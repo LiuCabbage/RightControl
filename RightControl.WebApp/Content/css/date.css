@@ -1,0 +1,31 @@
+/*new date*/
+.ui-time-box {
+  position: absolute;
+  width: 310px;
+  height:216px;
+  right:0;
+  padding: 5px;
+  border: 1px solid #b6c4d8;
+  background:#fff;
+  top: 35px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 10px #b6c4d8;
+  -webkit-animation-name: layui-upbit;
+  animation-name: layui-upbit;
+  -webkit-animation-duration: .3s;
+  animation-duration: .3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -moz-box-shadow: 0 2px 10px #b6c4d8;
+  box-shadow: 0 2px 10px #b6c4d8; }
+.ui-time-btn { border-top: 1px solid #b6c4d8; padding: 8px 0 }
+.time-button { -moz-user-select: none; cursor: pointer; display: inline-block; height: 30px; background: #008dda; padding: 0 10px; overflow: hidden; vertical-align: middle; color: #fff; line-height: 30px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; border:1px solid #b6c4d8 }
+.time-button:hover{ background: #fff; color: #333; border:1px solid #b6c4d8 }
+.ui-form-fields td.new-field{  font-weight: normal; }
+
+.time-dot li{ float: left; border:1px solid #b6c4d8; padding:2px 8px; background:#f3f3f3; margin-right: -1px; font-weight: normal; cursor: pointer; line-height: 20px; }
+.time-dot li:hover{ background: #fff;  }
+.time-dot li.active{ background: #fff; border:none; border-left:1px solid #b6c4d8 }
+.time-dot li:first-child.active{ border:none; }

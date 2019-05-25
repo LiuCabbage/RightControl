@@ -1,0 +1,45 @@
+﻿.admin-main{
+	margin: 15px;
+}
+.admin-main .layui-field-title .layui-field-box{
+	padding: 10px 30px;
+}
+.admin-main .layui-field-title .layui-field-box p{
+	padding: 5px 0;
+} 
+/**/
+.closeBox {
+    background-color: #fff;
+    /*border-left: 1px solid #e2e2e2;*/
+    color: #000;height: 40px;
+    line-height: 40px;position: absolute;right: 0;top: 0px;padding-left:10px;
+}
+.closeBox .layui-nav-more{
+	top:20px;border-top-color: #666;
+}
+.closeBox .layui-nav-mored{
+	top: 20px; border-color: transparent transparent #666;
+}
+.layui-nav.closeBox .layui-nav-item a{float: left;color:#999;}
+.layui-nav.closeBox .layui-nav-item a:hover{color:black;}
+.layui-nav.closeBox .layui-nav-item{line-height:38px;}
+/*.layui-nav.closeBox .layui-nav-more{border-color:#c2c2c2 transparent transparent}*/
+.layui-nav-child .layui-icon{font-size:18px;top:3px;}
+/*天气预报*/
+.tpwthwidt .text_1vUR5ag, .tpwthwidt .title_2I35arv{
+   color: green !important;
+}
+.tpwthwidt .container__sDy_v_{display:none !important;}
+#tp-weather-widget{line-height:26px;}
+#tp-weather-widget .tpwthwidt{margin-top:22px;}
+.tpwthwidt .front_2F0Ii3c{margin-top:12px !important;}
+.refresh {
+    width: 68px;height: 40px;background: #5EB95E;text-align: center;line-height: 40px;cursor: pointer;
+}
+.larryms-press {
+    display: block;vertical-align: top;margin: 0px;padding: 0px;float: left;
+}
+.refresh cite {
+    font-size: 15px;line-height: 40px;padding-left: 1px;color: #ffffff;font-style:normal;
+}
+.layui-shuaxin{font-size:14px;color:#ffffff;}

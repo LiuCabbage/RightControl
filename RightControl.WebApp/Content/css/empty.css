@@ -1,0 +1,21 @@
+﻿.layui-card {
+    box-shadow: 0.4px 0px 2px 0 rgba(0,0,0,.05);
+}
+.layui-fluid {
+    padding-top: 10px;
+    padding-bottom: 0px;
+}
+body {
+    background: #f1f2f7 none repeat scroll 0 0;
+    overflow-x: hidden;
+    padding: 0;
+}
+.layui-fluid .layui-col-md12 {
+    padding-bottom: 0px;
+}
+.icon{ font-size: 24px;float: left;margin-right:5px;}
+.fl{float:left;}
+.fr{float:right;}
+.txt-center{text-align:center;}
+.div-msg{font-weight: 400;line-height: 20px;padding: 9px 15px;color:orangered;}
+.img-headshot{width:100px;height:100px; position: absolute; top: -30px;border: medium none;border-radius: 50%;cursor:pointer;}
