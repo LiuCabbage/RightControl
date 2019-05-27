@@ -124,6 +124,7 @@
     <Content Include="Content\js\jquery.md5.js" />
     <Content Include="datas\nav.js" />
     <Content Include="datas\tree.js" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="plugins\app\common.js" />
