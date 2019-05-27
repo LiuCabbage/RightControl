@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RightControl.Model;
 
-namespace RightControl.IRepository.Permissions
+namespace RightControl.IRepository
 {
-    interface IUserRepository
+    public interface IUserRepository : IBaseRepository<UserModel>
     {
+        UserModel GetDetail(int Id);
+        UserModel CheckLogin(string username, string password);
+        int ModifyPwd(PassWordModel model);
     }
 }

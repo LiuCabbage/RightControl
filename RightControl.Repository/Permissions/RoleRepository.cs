@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RightControl.Service
+namespace RightControl.Repository.Permissions
 {
-    public class Class1
+    class RoleRepository
     {
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using RightControl.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RightControl.IRepository.Permissions
+namespace RightControl.IRepository
 {
-    interface IRoleRepository
+    public interface IRoleRepository : IBaseRepository<RoleModel>
     {
+        IEnumerable<RoleModel> GetRoleList();
     }
 }

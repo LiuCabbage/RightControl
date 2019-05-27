@@ -41,6 +41,7 @@
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,7 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="DBHeper\Common.cs" />
+    <Compile Include="DBHeper\MySqlHelper.cs" />
+    <Compile Include="DBHeper\PageCriteria.cs" />
+    <Compile Include="DBHeper\PageDataView.cs" />
+    <Compile Include="DBHeper\SqlHelper.cs" />
+    <Compile Include="Permissions\ActionRepository.cs" />
+    <Compile Include="Permissions\MenuRepository.cs" />
+    <Compile Include="Permissions\MenuRoleActionRepository.cs" />
+    <Compile Include="Permissions\RoleRepository.cs" />
+    <Compile Include="Permissions\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysSet\LogRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DapperExtensions\DapperExtensions.csproj">
@@ -70,5 +83,6 @@
       <Name>RightControl.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
