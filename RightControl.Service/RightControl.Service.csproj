@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="Permissions\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysSet\LogService.cs" />
   </ItemGroup>
@@ -67,8 +68,6 @@
       <Name>RightControl.Repository</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Permissions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
