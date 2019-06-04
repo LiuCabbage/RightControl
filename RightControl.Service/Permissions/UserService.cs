@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RightControl.Model;
-using RightControl.Common;
+﻿using RightControl.Common;
 using RightControl.IRepository;
 using RightControl.IService;
+using RightControl.Model;
 
 namespace RightControl.Service
 {
@@ -21,12 +16,22 @@ namespace RightControl.Service
         {
             return repository.CheckLogin(username, password);
         }
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="model">密码实体</param>
+        /// <returns></returns>
         public bool ModifyPwd(PassWordModel model)
         {
             model.OldPassword = Md5.md5(model.OldPassword, 32);
             model.Password = Md5.md5(model.Password, 32);
             return repository.ModifyPwd(model) > 0 ? true : false;
         }
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public bool InitPwd(UserModel model)
         {
             return repository.Update(model, "PassWord") > 0 ? true : false;

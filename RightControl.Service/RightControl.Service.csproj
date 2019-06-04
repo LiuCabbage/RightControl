@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="Common\DefaultPaging.cs" />
+    <Compile Include="Permissions\ActionService.cs" />
+    <Compile Include="Permissions\MenuRoleActionService.cs" />
+    <Compile Include="Permissions\MenuService.cs" />
+    <Compile Include="Permissions\RoleService.cs" />
     <Compile Include="Permissions\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysSet\LogService.cs" />

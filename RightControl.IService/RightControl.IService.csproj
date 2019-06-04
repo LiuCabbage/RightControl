@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseService.cs" />
+    <Compile Include="Permissions\IActionService.cs" />
+    <Compile Include="Permissions\IMenuRoleActionService.cs" />
+    <Compile Include="Permissions\IMenuService.cs" />
+    <Compile Include="Permissions\IRoleService.cs" />
     <Compile Include="Permissions\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SysSet\ILogService.cs" />

@@ -1,12 +1,23 @@
-﻿using System;
+﻿using Dapper;
+using RightControl.IRepository;
+using RightControl.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RightControl.Repository.Permissions
+namespace RightControl.Repository
 {
-    class RoleRepository
+    public class RoleRepository : BaseRepository<RoleModel>, IRoleRepository
     {
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<RoleModel> GetRoleList()
+        {
+            using (var conn = MySqlHelper.GetConnection())
+            {
+                var sql = "SELECT Id,RoleName from t_role";
+                return conn.Query<RoleModel>(sql);
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace RightControl.Model.UI
+﻿namespace RightControl.Model
 {
     public class uploadFile
     {

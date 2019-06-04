@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RightControl.Model.UI
+namespace RightControl.Model
 {
     public class tree
     {
