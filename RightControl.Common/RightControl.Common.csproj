@@ -74,6 +74,8 @@
     <Compile Include="WebHelper.cs" />
     <Compile Include="Web\AjaxResult.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
