@@ -168,6 +168,10 @@ INSERT INTO `t_menu_role_action` VALUES ('5', '1', '1');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '2');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '3');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '4');
+INSERT INTO `t_menu_role_action` VALUES ('6', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('7', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('8', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('9', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('10', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('10', '1', '4');
 

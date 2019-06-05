@@ -25,7 +25,11 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
 
         public JsonResult GetMenuList(bool isIndex = false)
         {
-            return Json("");//就写到这里
+            object result = service.GetMenusList(isIndex, Operator.RoleId);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+
+
     }
 }
