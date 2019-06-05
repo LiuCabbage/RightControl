@@ -6,12 +6,14 @@ using System.Web.Mvc;
 
 namespace RightControl.WebApp.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         // GET: Admin/Home
-        public ActionResult Index()
+        public override ActionResult Index(int? id)
         {
-            return View();
+            ViewBag.RealName= Operator == null ? "" : Operator.RealName;
+            ViewBag.HeadShot = Operator == null ? "" : Operator.HeadShot;
+            return View(GetWebSiteInfo());
         }
 
         public ActionResult Main()

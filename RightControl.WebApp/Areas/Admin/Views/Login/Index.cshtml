@@ -19,13 +19,13 @@
 </head>
 <body>
     <div style="position: absolute; z-index: 999; top: 20px; left: 20px; color: #fff; font-size: 13px; line-height: 22px;">
-        用户名 admin，密码 123456，请勿在系统内发表不文明信息
+        
     </div>
     <div class="wrapper">
         <div class="container">
             <div class="logo">
                 <i class="iconfont icon-ditu"></i>
-                <h1><span>登录</span>快速开发平台</h1>
+                <h1><span>登录</span>@ViewBag.Title</h1>
             </div>
             <form class="form">
                 <div class="row">
@@ -39,8 +39,8 @@
                 <div class="row">
                     <input id="txt_code" maxlength="4" type="text" placeholder="验证码" style="width: 190px; float: left;">
                     <div style="width: 110px; float: right; padding-top: 14px; padding-left: 14px;">
-                        看不清？<a id="switchCode" href="javascript:void();" style="text-decoration: none;">换一张</a>
-                        <img id="imgcode" class="authcode" src="~/Login/GetAuthCode" width="80" height="25" />
+                        <a id="switchCode" href="javascript:;" style="text-decoration: none;">看不清？换一张</a>
+                        <img id="imgcode" class="authcode" src="~/Admin/Login/GetAuthCode" width="80" height="25" />
                     </div>
                 </div>
                 <div class="row">
@@ -65,9 +65,7 @@
         </ul>
     </div>
     <div class="copyright">
-        <a href="@ViewBag.SiteDomain" style="text-decoration:none;color:#fff;" target="_blank">@ViewBag.CopyRight 开发团队出品</a>
-        <br>
-        适用浏览器：IE8以上、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗.
+        <a href="@ViewBag.SiteDomain" style="text-decoration:none;color:#fff;" target="_blank">@ViewBag.CopyRight</a>
     </div>
     <script type="text/javascript">
     (function ($) {
@@ -95,7 +93,7 @@
                     } else {
                         $("#login_button").attr('disabled', 'disabled').find('span').html("loading...");
                         $.ajax({
-                            url: "/Login/CheckLogin",
+                            url: "/Admin/Login/CheckLogin",
                             data: { username: $.trim($username.val()), password: $.md5($.trim($password.val())), code: $.trim($code.val()) },
                             type: "post",
                             dataType: "json",
@@ -103,7 +101,7 @@
                                 if (data.state == "success") {
                                     $("#login_button").find('span').html("登录成功，正在跳转...");
                                     window.setTimeout(function () {
-                                        window.location.href = "/Home/Index";
+                                        window.location.href = "/Admin/Home/Index";
                                     }, 500);
                                 } else {
                                     $("#login_button").removeAttr('disabled').find('span').html("登录");
@@ -123,7 +121,7 @@
                         $(".container").css("margin-top", ($(window).height() - $(".container").height()) / 2 - 50);
                     });
                     $("#switchCode").click(function () {
-                        $("#imgcode").attr("src", "/Login/GetAuthCode?time=" + Math.random());
+                        $("#imgcode").attr("src", "/Admin/Login/GetAuthCode?time=" + Math.random());
                     });
                     var login_error = top.$.cookie('nfine_login_error');
                     if (login_error != null) {

@@ -31,7 +31,7 @@ form button:hover{opacity: 0.9;}
 @keyframes square{0%{-webkit-transform: translateY(0);transform: translateY(0);}
 100%{-webkit-transform: translateY(-700px) rotate(600deg);transform: translateY(-700px) rotate(600deg);}}
 button[disabled],button[disabled] button{color:#fff;opacity:1;cursor:default;}
-.copyright{text-align: center;color: #fff;position: absolute;top: 100%;margin-top: -60px;width: 97%;font-family: Microsoft Yahei;line-height: 25px;font-size:14px;}
+.copyright{text-align: center;color: #fff;position: absolute;top: 100%;margin-top: -60px;width: 100%;font-family: Microsoft Yahei;line-height: 25px;font-size:14px;}
 .login_tips{position:absolute;bottom:10px;z-index: 99;width:100%;}
 .tips_msg{height:30px;line-height:30px;color: red;margin: 0 auto;border-radius:5px;width:300px;font-size:14px;}
 .tips_msg i{position: relative;top: 0.5px;font-size: 15px;padding-right: 5px;}

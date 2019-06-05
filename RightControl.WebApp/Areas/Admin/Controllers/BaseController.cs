@@ -57,7 +57,15 @@ namespace RightControl.WebApp.Areas.Admin.Controllers
         {
             return new WebSiteModel
             {
-                SiteName = Configs.GetValue("SiteName")//就写到这里
+                SiteName = Configs.GetValue("SiteName"),
+                SiteDomain = Configs.GetValue("SiteDomain"),
+                CacheTime = Configs.GetValue("CacheTime"),
+                MaxFileUpload = Configs.GetValue("MaxFileUpload"),
+                UploadFileType = Configs.GetValue("UploadFileType"),
+                HomeTitle = Configs.GetValue("HomeTitle"),
+                MetaKey = Configs.GetValue("MetaKey"),
+                MetaDescribe = Configs.GetValue("MetaDescribe"),
+                CopyRight = Configs.GetValue("CopyRight")
             };
         }
     }

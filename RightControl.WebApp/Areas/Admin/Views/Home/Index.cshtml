@@ -1,4 +1,4 @@
-﻿
+﻿@model RightControl.WebApp.WebSiteModel
 @{
     ViewBag.Title = "Index";
 }
@@ -8,7 +8,7 @@
         <div class="layui-main">
             <div class="admin-login-box">
                 <a class="logo" style="left: 0;" href="#">
-                    <span style="font-size: 22px;">Model.SiteName</span>
+                    <span style="font-size: 22px;">@Model.SiteName</span>
                 </a>
                 <div class="admin-side-toggle">
                     <i class="iconfont icon-ego-menu" aria-hidden="true"></i>
@@ -72,7 +72,7 @@
                         <dd data-type="closeall"><a href="javascript:;"><i class="layui-icon" aria-hidden="true">&#x1007;</i> 关闭全部</a></dd>
                     </dl>
                 </li>
-                <span class="layui-nav-bar"></span>
+                @*<span class="layui-nav-bar"></span>*@
             </ul>
             <div class="layui-tab-content" style="min-height: 150px; padding: 5px 0 0 0;">
                 <div class="layui-tab-item layui-show">

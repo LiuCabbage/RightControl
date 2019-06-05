@@ -1,16 +1,4 @@
-﻿/*******************************
-** 作者：zouqj
-** 时间：2018/5/13 16:34:24
-** 版本: V1.0.0
-** CLR:  4.0.30319.42000
-** GUID: 7f325096-faba-4728-b829-ace3bb7f5eeb
-** 描述： 
-*******************************/
-using RightControl.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using RightControl.Common;
 using System.Web.Mvc;
 
 namespace RightControl.WebApp
