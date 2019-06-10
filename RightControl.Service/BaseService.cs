@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RightControl.Service
 {
-    public class BaseService<T> : IBaseService<T> where T : class, new()
+    public abstract class BaseService<T> where T : class, new()
     {
         public IBaseRepository<T> baseRepository { get; set; }
         #region 接口实现

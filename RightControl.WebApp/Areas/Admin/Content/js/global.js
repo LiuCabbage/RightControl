@@ -76,7 +76,6 @@ function urlToJson(str) {
     ret = ret.trimEnd(',')
     ret = "{" + ret + "}";
     obj = ret == '{}' ? {} : eval('(' + ret + ')');
-
     return obj;
 }
 function openSetIcon() {

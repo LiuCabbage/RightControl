@@ -13,6 +13,6 @@ namespace RightControl.IService
         bool DeleteModel(int Id);
         #endregion
         IEnumerable<T> GetAll(string returnFields = null, string orderby = null);
-        dynamic GetListByFilter(T filter, PageInfo pageInfo, string where = null);
+        dynamic GetListByFilter(T filter, PageInfo pageInfo);
     }
 }
