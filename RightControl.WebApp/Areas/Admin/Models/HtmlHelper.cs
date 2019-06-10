@@ -48,12 +48,12 @@ namespace RightControl.WebApp
         /// <param name="helper"></param>
         /// <param name="defaultTxt">默认显示文本</param>
         /// <returns></returns>
-        public static HtmlString GanderRadioHtml(this HtmlHelper helper, int defaultVal=0)
+        public static HtmlString GanderRadioHtml(this HtmlHelper helper, int defaultVal=1)
         {
-            var _male = defaultVal == 0 ? "checked" : "";
-            var _female = defaultVal == 1 ? "checked" : "";
-            return new HtmlString(string.Format(@"<input type='radio' name='Gander' value='0' title='男' {0}>
-                     <input type='radio' name='Gander' value='1' title='女' {1}>", _male, _female));
+            var _male = defaultVal == 1 ? "checked" : "";
+            var _female = defaultVal == 0 ? "checked" : "";
+            return new HtmlString(string.Format(@"<input type='radio' name='Gander' value='1' title='男' {0}>
+                     <input type='radio' name='Gander' value='0' title='女' {1}>", _male, _female));
         }
         /// <summary>
         /// 搜索按钮

@@ -101,7 +101,7 @@
                                 if (data.state == "success") {
                                     $("#login_button").find('span').html("登录成功，正在跳转...");
                                     window.setTimeout(function () {
-                                        window.location.href = "/Admin/Home";
+                                        window.location.href = "/Admin/Home/Index";
                                     }, 500);
                                 } else {
                                     $("#login_button").removeAttr('disabled').find('span').html("登录");

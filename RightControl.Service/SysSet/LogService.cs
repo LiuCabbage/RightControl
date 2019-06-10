@@ -11,7 +11,7 @@ namespace RightControl.Service.SysSet
 {
     public class LogService : BaseService<LogModel>, ILogService
     {
-        public bool WriteDblog(LogModel model)
+        public bool WriteDbLog(LogModel model)
         {
             model.Status = true;
             model.CreateOn = DateTime.Now;

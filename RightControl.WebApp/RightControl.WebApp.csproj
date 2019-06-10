@@ -269,6 +269,7 @@
     <Compile Include="Areas\Permissions\Controllers\MenuController.cs" />
     <Compile Include="Areas\Permissions\PermissionsAreaRegistration.cs" />
     <Compile Include="Areas\SysSet\Controllers\InfoController.cs" />
+    <Compile Include="Areas\SysSet\Controllers\PassWordController.cs" />
     <Compile Include="Areas\SysSet\Controllers\WebSiteController.cs" />
     <Compile Include="Areas\SysSet\SysSetAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -299,6 +300,8 @@
     <Content Include="Areas\SysSet\Views\web.config" />
     <Content Include="Areas\SysSet\Views\WebSite\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutSinglePage.cshtml" />
+    <Content Include="Areas\SysSet\Views\Info\Index.cshtml" />
+    <Content Include="Areas\SysSet\Views\PassWord\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.eot" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.ttf" />
@@ -322,7 +325,6 @@
     <Folder Include="Areas\Permissions\Views\Menu\" />
     <Folder Include="Areas\Permissions\Views\Shared\" />
     <Folder Include="Areas\SysSet\Models\" />
-    <Folder Include="Areas\SysSet\Views\Info\" />
     <Folder Include="Areas\SysSet\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>

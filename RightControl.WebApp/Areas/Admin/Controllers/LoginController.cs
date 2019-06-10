@@ -31,7 +31,7 @@ namespace RightControl.WebApp.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult OutLogin()
         {
-            logService.WriteDblog(new LogModel
+            logService.WriteDbLog(new LogModel
             {
                 LogType = DbLogType.Exit.ToString(),
                 UserName = OperatorProvider.Provider.GetCurrent().UserName,
@@ -83,7 +83,7 @@ namespace RightControl.WebApp.Areas.Admin.Controllers
                     logEntity.Status = true;
                     logEntity.Description = "登录成功";
                     logEntity.CreateBy = userEntity.Id;
-                    logService.WriteDblog(logEntity);
+                    logService.WriteDbLog(logEntity);
                     return Content(new AjaxResult { state = ResultType.success.ToString(), message = "登录成功。" }.ToJson());
                 }
                 else
@@ -97,7 +97,7 @@ namespace RightControl.WebApp.Areas.Admin.Controllers
                 logEntity.RealName = username;
                 logEntity.Status = false;
                 logEntity.Description = "登录失败，" + ex.Message;
-                logService.WriteDblog(logEntity);
+                logService.WriteDbLog(logEntity);
                 return Content(new AjaxResult { state = ResultType.error.ToString(), message = ex.Message }.ToJson());
             }
         }

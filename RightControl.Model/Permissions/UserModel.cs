@@ -26,7 +26,7 @@ namespace RightControl.Model
         /// </summary>
         public int RoleId { get; set; }
         /// <summary>
-        /// 性别（0：男，1：女）
+        /// 性别（0：女，1：男）
         /// </summary>
         [Display(Name = "性别")]
         public int Gender { get; set; }

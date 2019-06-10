@@ -1,0 +1,120 @@
+﻿@model RightControl.Model.UserModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutSinglePage.cshtml";
+}
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">设置我的资料</div>
+                <div class="layui-card-body" pad15>
+                    <form action="/SysSet/Info/Index" method="post" class="layui-form" lay-filter="">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">我的角色</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="RoleName" value=" @Model.RoleName" readonly class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">用户名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="UserName" value="@Model.UserName" readonly class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="RealName" value="@Model.RealName" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-block">
+                                @Html.GanderRadioHtml(Model.Gender)
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">头像</label>
+                            <div class="layui-input-inline">
+                                <input name="HeadShot" lay-verify="required" readonly id="HeadShot" placeholder="图片地址" value="@Model.HeadShot" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline layui-btn-container" style="width: auto;">
+                                <button type="button" class="layui-btn layui-btn-primary" id="btnUpload">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+                                @*<a class="layui-btn layui-btn-primary" id="btnPreview">查看图片</a>*@
+                                <div id="layer-photos-demo" class="fr">
+                                    <img class="img-headshot" id="imgHeadShot" layer-pid="HeadShot" layer-src="@Model.HeadShot" src="@Model.HeadShot" alt="头像预览">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">手机</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="Phone" value="@Model.Phone" lay-verify="phone" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="Email" value="@Model.Email" lay-verify="email" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">备注</label>
+                            <div class="layui-input-block">
+                                <textarea name="Remark" placeholder="请输入内容" class="layui-textarea">@Model.Remark</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn fl" lay-submit lay-filter="setmyinfo">确认修改</button>
+                                <button type="reset" class="layui-btn layui-btn-primary fl">重新填写</button>
+                                <div class="div-msg fl" style="float:left;">@ViewBag.Msg</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        layui.use(['upload','layer'], function () {
+            var upload = layui.upload,
+                layer=layui.layer;
+            var $ = layui.$;
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#btnUpload' //绑定元素
+                , url: '/SysSet/Info/ExportFile/' //上传接口
+              , size: '@ViewBag.MaxFileUpload'
+              , exts: '@ViewBag.UploadFileType'
+              , done: function (res) {  //上传完毕回调
+                  //假设code=0代表上传成功
+                  if (res.code == 0) {
+                      //do something （比如将res返回的图片链接保存到表单的隐藏域）
+                      $("#HeadShot").val(res.src);
+                      $("#imgHeadShot").attr("src", res.src);
+                      $("#imgHeadShot").attr("layer-src", res.src)
+                  }
+              }
+              , error: function () { //请求异常回调
+
+              }
+            });
+            layer.photos({
+                photos: '#layer-photos-demo',
+                anim: 1
+            });
+            //$("#btnPreview").click(function () {
+
+            //});
+        });
+</script>
+

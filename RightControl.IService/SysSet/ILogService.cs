@@ -9,6 +9,6 @@ namespace RightControl.IService
 {
     public interface ILogService:IBaseService<LogModel>
     {
-        bool WriteDblog(LogModel model);
+        bool WriteDbLog(LogModel model);
     }
 }
