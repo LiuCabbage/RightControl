@@ -1,0 +1,56 @@
+﻿@model RightControl.Model.ActionModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDetail.cshtml";
+}
+
+<div class="layui-col-md12">
+    <table class="layui-table" lay-skin="line">
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.ActionName)：</td>
+                <td>@Model.ActionName</td>
+                <td>@Html.DisplayNameFor(x => x.ActionCode)：</td>
+                <td>@Model.ActionCode</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.Method)：</td>
+                <td>@Model.Method</td>
+                <td>@Html.DisplayNameFor(x => x.OrderBy)：</td>
+                <td>@Model.OrderBy</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.Status)：</td>
+                <td>@Html.DisplayStatusHtml(@Model.Status)</td>
+                <td>@Html.DisplayNameFor(x => x.Icon)：</td>
+                <td>
+                    <span class="icon iconfont @Model.Icon"></span><span>@Model.Icon</span>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.Position)：</td>
+                <td>@Html.DisplayFor(x => x.Position)</td>
+                <td>@Html.DisplayNameFor(x => x.ClassName)：</td>
+                <td>@Html.DisplayFor(x => x.ClassName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.CreateOn)：</td>
+                <td>@Html.DisplayFor(x => x.CreateOn)</td>
+                <td>@Html.DisplayNameFor(x => x.UpdateOn)：</td>
+                <td>@Html.DisplayFor(x => x.UpdateOn)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.CreateBy)：</td>
+                <td>@Html.DisplayFor(x => x.CreateBy)</td>
+                <td>@Html.DisplayNameFor(x => x.UpdateBy)：</td>
+                <td>@Html.DisplayFor(x => x.UpdateBy)</td>
+            </tr>
+            <tr><td>@Html.DisplayNameFor(x => x.Remark)：</td><td colspan="3">@Model.Remark</td></tr>
+    </table>
+</div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form;
+    });
+</script>
+

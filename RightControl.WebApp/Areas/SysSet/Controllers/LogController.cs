@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using RightControl.WebApp.Areas.Admin.Controllers;
+﻿using RightControl.IService;
 using RightControl.Model;
-using RightControl.IService;
+using RightControl.WebApp.Areas.Admin.Controllers;
+using System.Web.Mvc;
 
 namespace RightControl.WebApp.Areas.SysSet.Controllers
 {
@@ -15,11 +11,6 @@ namespace RightControl.WebApp.Areas.SysSet.Controllers
         public LogController(ILogService _service)
         {
             service = _service;
-        }
-        // GET: SysSet/Log
-        public override ActionResult Index(int? id)
-        {
-            return View();
         }
         /// <summary>
         /// 加载数据列表

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/Admin/plugins/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/fonts/iconfont.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/css/admin.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/plugins/layui/layui.js"></script>
+    <script src="~/Areas/Admin/Content/js/global.js"></script>
+    <style type="text/css">
+        body {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    @RenderBody()
+    <script type="text/javascript">
+        layui.config({
+            base: '/Areas/Admin/plugins/app/',
+            version: '1522709297490' //为了更新 js 缓存，可忽略
+        });
+        layui.use(['common'], function () {
+            var $ = layui.jquery;
+            common = layui.common;
+        })
+        //关闭页面
+        function CloseWin() {
+            //parent.location.reload(); // 父页面刷新
+            var _btnSearch = window.parent.document.getElementById("btnSearch");
+            if (_btnSearch) {
+                _btnSearch.click();
+            }
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        }
+        //监听表单提交
+        function submitForm(form, msg) {
+            layui.use(['common'], function () {
+                var $ = layui.jquery;
+                common = layui.common;
+                form.on('submit(submitForm)', function (data) {
+                    ajaxSubmitForm($("#form"), function (data) {
+                        if (data.state == "success") {
+                            common.msgSuccess(msg);
+                            CloseWin();
+                        }
+                    });
+                    return false;
+                });
+            })
+        }
+    </script>
+</body>
+</html>

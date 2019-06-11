@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/Admin/plugins/layui/css/layui.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/fonts/iconfont.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/plugins/layui/layui.js"></script>
+    <script src="~/Areas/Admin/Content/js/global.js"></script>
+</head>
+<body>
+    <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
+        <img src="~/Areas/Admin/Content/images/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
+    </div>
+    @RenderBody()
+    <script type="text/javascript">
+        layui.config({
+            base: '/Areas/Admin/plugins/app/',
+            version: '1522709297490' //为了更新 js 缓存，可忽略
+        });
+        layui.use(['common'], function () {
+            var $ = layui.jquery;
+            $(function () {
+                $('#ajax-loader').fadeOut();
+            })
+        })
+    </script>
+</body>
+</html>

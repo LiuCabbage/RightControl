@@ -127,6 +127,7 @@
     <Content Include="Areas\Admin\Content\Site.css" />
     <Content Include="Areas\Admin\datas\nav.js" />
     <Content Include="Areas\Admin\datas\tree.js" />
+    <Content Include="Areas\SysSet\Views\Log\Index.cshtml" />
     <Content Include="favicon.ico" />
     <Content Include="Areas\Admin\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -266,6 +267,7 @@
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Permissions\Controllers\ActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\MenuController.cs" />
     <Compile Include="Areas\Permissions\PermissionsAreaRegistration.cs" />
     <Compile Include="Areas\SysSet\Controllers\InfoController.cs" />
@@ -303,8 +305,11 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutSinglePage.cshtml" />
     <Content Include="Areas\SysSet\Views\Info\Index.cshtml" />
     <Content Include="Areas\SysSet\Views\PassWord\Index.cshtml" />
-    <Content Include="Areas\SysSet\Views\Log\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutList.cshtml" />
+    <Content Include="Areas\Permissions\Views\Action\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Areas\Permissions\Views\Action\Detail.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.eot" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.ttf" />
