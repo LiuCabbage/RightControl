@@ -88,10 +88,10 @@ function openSetIcon() {
         content: '/Icon.html'
     });
 }
-//function document.onkeydown(){                //网页内按下回车触发
-//    if(event.keyCode==13)
-//    {
-//        document.getElementById("btnSearch").click();   
-//        return false;                               
-//    }
-//}
+document.onkeydown = function (event){                //网页内按下回车触发
+    if(event.keyCode==13)
+    {
+        document.getElementById("btnSearch").click();   
+        return false;                               
+    }
+}
