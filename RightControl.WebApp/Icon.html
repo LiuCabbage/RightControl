@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Areas/Admin/plugins/layui/css/layui.css" rel="stylesheet" />
+    <link href="Areas/Admin/Content/fonts/iconfont.css" rel="stylesheet" />
+    <style type="text/css">
+
+        .site-doc-icon {
+            font-size: 0;
+            margin: 10px;
+        }
+
+            .site-doc-icon li {
+                border: 1px solid #e2e2e2;
+                color: #666;
+                display: inline-block;
+                font-size: 14px;
+                line-height: 25px;
+                margin-bottom: -1px;
+                margin-right: -1px;
+                padding: 10px 0;
+                text-align: center;
+                transition: all 0.3s ease 0s;
+                vertical-align: middle;
+                width: 80px;
+                cursor: pointer;
+            }
+
+                .site-doc-icon li .iconfont {
+                    display: inline-block;
+                    font-size: 24px;
+                }
+
+                .site-doc-icon li .name {
+                    color: #c2c2c2;
+                }
+
+        .iconfont {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <ul class='site-doc-icon'>
+        <li onclick='setIcon("icon-zhuye")'>
+            <i class='iconfont icon-zhuye'></i>
+            <div class="name">主页</div>
+        </li>
+        <li onclick='setIcon("icon-setting-permissions")'>
+            <i class='iconfont icon-setting-permissions'></i>
+            <div class="name">权限管理</div>
+        </li>
+        <li onclick='setIcon("icon-caidan")'>
+            <i class='iconfont icon-caidan'></i>
+            <div class="name">菜单管理</div>
+        </li>
+        <li onclick='setIcon("icon-jiaoseguanli")'>
+            <i class='iconfont icon-jiaoseguanli'></i>
+            <div class="name">角色管理</div>
+        </li>
+        <li onclick='setIcon("icon-yonghu")'>
+            <i class='iconfont icon-yonghu'></i>
+            <div class="name">用户管理</div>
+        </li>
+        <li onclick='setIcon("icon-xitong")'>
+            <i class='iconfont icon-xitong'></i>
+            <div class="name">系统设置</div>
+        </li>
+        <li onclick='setIcon("icon-ditu")'>
+            <i class='iconfont icon-ditu'></i>
+            <div class="name">地图</div>
+        </li>
+        <li onclick='setIcon("icon-jibenziliao")'>
+            <i class='iconfont icon-jibenziliao'></i>
+            <div class="name">基本资料</div>
+        </li>
+        <li onclick='setIcon("icon-xiugaimima")'>
+            <i class='iconfont icon-xiugaimima'></i>
+            <div class="name">密码</div>
+        </li>
+        <li onclick='setIcon("icon-xitongrizhi")'>
+            <i class='iconfont icon-xitongrizhi'></i>
+            <div class="name">日志管理</div>
+        </li>
+        <li onclick='setIcon("icon-ego-menu")'>
+            <i class='iconfont icon-ego-menu'></i>
+            <div class="name">折叠菜单</div>
+        </li>
+        <li onclick='setIcon("icon-suoping")'>
+            <i class='iconfont icon-suoping'></i>
+            <div class="name">锁屏</div>
+        </li>
+        <li onclick='setIcon("icon-guanbi")'>
+            <i class='iconfont icon-guanbi'></i>
+            <div class="name">关闭</div>
+        </li>
+        <li onclick='setIcon("icon-zhuxiaoguanji")'>
+            <i class='iconfont icon-zhuxiaoguanji'></i>
+            <div class="name">注销管理</div>
+        </li>
+        <li onclick='setIcon("icon-shezhi")'>
+            <i class='iconfont icon-shezhi'></i>
+            <div class="name">设置</div>
+        </li>
+        <li onclick='setIcon("icon-shanchu")'>
+            <i class='iconfont icon-shanchu'></i>
+            <div class="name">删除</div>
+        </li>
+        <li onclick='setIcon("icon-chakan")'>
+            <i class='iconfont icon-chakan'></i>
+            <div class="name">查看</div>
+        </li>
+        <li onclick='setIcon("icon-zhedie")'>
+            <i class='iconfont icon-zhedie'></i>
+            <div class="name">折叠</div>
+        </li>
+        <li onclick='setIcon("icon-bianji")'>
+            <i class='iconfont icon-bianji'></i>
+            <div class="name">编辑</div>
+        </li>
+        <li onclick='setIcon("icon-reset")'>
+            <i class='iconfont icon-reset'></i>
+            <div class="name">重置</div>
+        </li>
+        <li onclick='setIcon("icon-add")'>
+            <i class='iconfont icon-add'></i>
+            <div class="name">添加</div>
+        </li>
+        <li onclick='setIcon("icon-soushuo")'>
+            <i class='iconfont icon-soushuo'></i>
+            <div class="name">搜索</div>
+        </li>
+    </ul>
+    <script type="text/javascript">function setIcon(txt) {
+            var _Icon = window.parent.document.getElementById("Icon");
+            if (_Icon) {
+                _Icon.value = txt;
+            }
+            var _spnIcon = window.parent.document.getElementById("spnIcon");
+            if (_spnIcon) {
+                _spnIcon.setAttribute("class", "iconfont " + txt);
+            }
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        }</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿@model RightControl.Model.ActionModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutForm.cshtml";
+}
+
+<div class="layui-col-md12 top10">
+    <form class="layui-form" id="form" action="/Permissions/Action/Edit" method="post">
+        <input name="Id" value="@Model.Id" type="hidden">
+        @Html.HiddenFor(x => x.CreateOn)
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作名称</label>
+            <div class="layui-input-inline">
+                <input name="ActionName" value="@Model.ActionName" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+            <label class="layui-form-label">操作编码</label>
+            <div class="layui-input-inline">
+                <input name="ActionCode" value="@Model.ActionCode" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作方法</label>
+            <div class="layui-input-inline">
+                <input name="Method" lay-vertype="tips" class="layui-input" type="text" value="@Model.Method">
+            </div>
+            <label class="layui-form-label">排序号</label>
+            <div class="layui-input-inline">
+                <input name="OrderBy" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" value="@Model.OrderBy">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作图片</label>
+            <div class="layui-input-inline">
+                <input name="Icon" id="Icon" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" value="@Model.Icon" />
+            </div>
+            <div class="layui-input-inline"><a id="sltIcon" href="javascript:;">选择图片</a><span id="spnIcon" class="iconfont @Model.Icon"></span></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作样式</label>
+            <div class="layui-input-inline">
+                <input name="ClassName" lay-vertype="tips" class="layui-input" type="text" value="@Model.ClassName">
+            </div>
+            <label class="layui-form-label">显示位置</label>
+            <div class="layui-input-inline">
+                @Html.DropDownListFor(model => model.Position, (List<SelectListItem>)ViewData["Position"], new Dictionary<string, object> { { "lay-filter", "Position" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">操作描述</label>
+            <div class="layui-input-block">
+                @Html.TextAreaFor(x => x.Remark, new Dictionary<string, object> { { "class", "layui-textarea" }, { "lay-verify", "pass" }, { "lay-vertype", "tips" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                @Html.StatusRadioHtml(Model.Status)
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="submitForm" id="submitForm">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+            layui.use(['form'], function () {
+                var form = layui.form;
+                var $ = layui.$;
+                submitForm(form, "编辑成功"); //监听提交
+                $("#sltIcon").on("click", function () {
+                    openSetIcon();
+                });
+                $("#Position").val(@Model.Position)
+                form.render('select');
+            });
+</script>
+

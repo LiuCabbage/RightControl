@@ -254,6 +254,7 @@
     <Content Include="Areas\Admin\Scripts\jquery-1.10.2.js" />
     <Content Include="Areas\Admin\Scripts\jquery-1.10.2.min.js" />
     <Content Include="Areas\Admin\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Icon.html" />
     <Content Include="Upload\img\headshot.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -310,6 +311,8 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Areas\Permissions\Views\Action\Detail.cshtml" />
+    <Content Include="Areas\Permissions\Views\Action\Edit.cshtml" />
+    <Content Include="Areas\Permissions\Views\Action\Add.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.eot" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.ttf" />
