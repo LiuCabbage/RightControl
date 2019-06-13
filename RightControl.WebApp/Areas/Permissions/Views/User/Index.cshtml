@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutList.cshtml";
+}
+
+<div class="admin-main">
+    <blockquote class="layui-elem-quote p10">
+        <form id="formSearch" class="layui-form" action="">
+            <div class="layui-form-item" style="margin-bottom:0px;">
+                <label class="layui-form-label">用户名称：</label>
+                <div class="layui-input-inline">
+                    <input name="UserName" id="UserName" lay-verify="" autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">角色名称：</label>
+                <div class="layui-input-inline">
+                    @Html.DropDownList("RoleId", null, "-请选择角色-", new Dictionary<string, object> { { "lay-verify", "required" } })
+                </div>
+                <label class="layui-form-label">状态：</label>
+                <div class="layui-input-inline">
+                    @Html.StatusSelectHtml()
+                </div>
+                @Html.SearchBtnHtml()
+                @Html.ResetBtnHtml()
+                <div style="float:right;">
+                    @Html.TopToolBarHtml(ViewData["ActionFormRightTop"])
+                </div>
+            </div>
+        </form>
+    </blockquote>
+    <div class="layui-field-box">
+        <table id="defaultTable" lay-filter="defaultruv"></table>
+        <!-- 这里的 checked 的状态只是演示 -->
+        <script type="text/html" id="bar">
+            @Html.ToolBarHtml(ViewData["ActionList"])
+        </script>
+    </div>
+</div>
+<script>
+        layui.use(['table', 'common', 'form'], function () {
+            var table = layui.table,
+                form = layui.form,
+                common = layui.common;
+            //表格
+            table.render({
+                id: 'defaultReload'
+               , elem: '#defaultTable'
+               , height: 'full-112' //高度最大化减去差值
+               , url: '/Permissions/User/List' //数据接口
+               , page: true //开启分页
+               , cols: [[ //表头
+                 { checkbox: true, fixed: true },
+                 { field: 'Id', title: 'Id', width: 80, fixed: 'left' }
+                 , { field: 'UserName', title: '用户名称', sort: true }
+                 , { field: 'RealName', title: '真实姓名' }
+                 , { field: 'RoleName', title: '角色名称' }
+                , { field: 'Status', title: '状态', templet: '<div>{{showStatus(d.Status)}}</div>', unresize: true, width: 100, align: 'center' }
+                 , { field: 'CreateOn', title: '创建时间', width: 160, sort: true, templet: '<div>{{showDate(d.CreateOn)}}</div>' }
+                 , { field: '', title: '操作', toolbar: "#bar" }
+               ]]
+            });
+            var $ = layui.$, active = {
+                reload: function () {
+                    var jsonWhere = urlToJson($("#formSearch").serialize());
+                    //执行重载
+                    table.reload('defaultReload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                      , where: jsonWhere
+                    });
+                }
+            };
+            //服务器排序
+            table.on('sort(defaultruv)', function (obj) {
+                //尽管我们的 table 自带排序功能，但并没有请求服务端。
+                //有些时候，你可能需要根据当前排序的字段，重新向服务端发送请求，如：
+                table.reload('defaultReload', {
+                    initSort: obj //记录初始排序，如果不设的话，将无法标记表头的排序状态。 layui 2.1.1 新增参数
+                  , where: { //请求参数
+                      field: obj.field //排序字段
+                    , order: obj.type //排序方式
+                  }
+                });
+            });
+            $('#btnSearch').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+            //add
+            $('#btnAdd').on('click', function () {
+                common.openTop({
+                    title: '用户添加', w: '600px', h: '360px', content: '/Permissions/User/Add/'
+                });
+            });
+            //监听工具条
+            table.on('tool(defaultruv)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    common.openTop({
+                        detail: true,
+                        title: '用户详情', w: '600px', h: '360px', content: '/Permissions/User/Detail/' + data.Id, clickOK: function (index) {
+                            common.close(index);
+                        }
+                    });
+                } else if (obj.event === 'del') {
+                    layer.confirm('确定要删除吗？', function (index) {
+                        $.ajax({
+                            url: "/Permissions/User/Delete",
+                            type: "POST",
+                            data: { "Id": data.Id },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.state == "success") {
+                                    obj.del();//删除这一行
+                                    common.msgSuccess("删除成功");
+                                } else {
+                                    common.msgError("删除失败");
+                                }
+                                layer.close(index);//关闭弹框
+                            }
+                        });
+                    });
+                } else if (obj.event === 'edit') {
+                    common.openTop({
+                        title: '用户编辑', w: '600px', h: '360px', content: '/Permissions/User/Edit/' + data.Id
+                    });
+                } else if (obj.event === 'reset') {
+                    layer.confirm('确定要初始化密码吗？', function (index) {
+                        $.ajax({
+                            url: "/Permissions/User/InitPwd",
+                            type: "POST",
+                            data: { "Id": data.Id },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.state == "success") {
+                                    layer.close(index);//关闭弹框
+                                    common.msgSuccess("密码初始化成功");
+                                } else {
+                                    common.msgError("密码初始化失败");
+                                }
+                                layer.close(index);//关闭弹框
+                            }
+                        });
+                    });
+                }
+            });
+        });
+</script>
+

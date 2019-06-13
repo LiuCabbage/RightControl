@@ -270,6 +270,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Permissions\Controllers\ActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Permissions\Controllers\UserController.cs" />
     <Compile Include="Areas\Permissions\PermissionsAreaRegistration.cs" />
     <Compile Include="Areas\SysSet\Controllers\InfoController.cs" />
     <Compile Include="Areas\SysSet\Controllers\LogController.cs" />
@@ -313,6 +314,10 @@
     <Content Include="Areas\Permissions\Views\Action\Detail.cshtml" />
     <Content Include="Areas\Permissions\Views\Action\Edit.cshtml" />
     <Content Include="Areas\Permissions\Views\Action\Add.cshtml" />
+    <Content Include="Areas\Permissions\Views\User\Index.cshtml" />
+    <Content Include="Areas\Permissions\Views\User\Detail.cshtml" />
+    <Content Include="Areas\Permissions\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Permissions\Views\User\Add.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.eot" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.ttf" />

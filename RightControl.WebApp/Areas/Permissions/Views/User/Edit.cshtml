@@ -1,0 +1,59 @@
+﻿@model RightControl.Model.UserModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutForm.cshtml";
+}
+
+<div class="layui-col-md12 top10">
+    <form class="layui-form" id="form" action="/Permissions/User/Edit" method="post">
+        <input name="Id" value="@Model.Id" type="hidden">
+        @Html.HiddenFor(x => x.CreateOn)
+        @Html.HiddenFor(x => x.PassWord)
+        @Html.HiddenFor(x => x.Phone)
+        @Html.HiddenFor(x => x.Email)
+        @Html.HiddenFor(x => x.Gender)
+        @Html.HiddenFor(x => x.Remark)
+        @Html.HiddenFor(x => x.HeadShot)
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名称</label>
+            <div class="layui-input-inline">
+                <input name="UserName" value="@Model.UserName" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">真实姓名</label>
+            <div class="layui-input-inline">
+                <input name="RealName" value="@Model.RealName" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+            <div class="layui-form-mid layui-word-aux">姓名 如：张三</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色</label>
+            <div class="layui-input-inline">
+                @Html.DropDownList("RoleId", null, "-请选择角色-", new Dictionary<string, object> { { "lay-verify", "required" }, { "lay-vertype", "tips" }, { "class", "layui-input" }, { "lay-filter", "RoleId" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                @Html.StatusRadioHtml(Model.Status)
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="submitForm" id="submitForm">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+            layui.use(['form'], function () {
+                var form = layui.form;
+                var $ = layui.$;
+                submitForm(form, "编辑成功"); //监听提交
+                $("#RoleId").val(@Model.RoleId)
+                form.render('select');
+            });
+</script>
+

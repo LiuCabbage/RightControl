@@ -1,0 +1,41 @@
+﻿@model RightControl.Model.UserModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDetail.cshtml";
+}
+
+<div class="layui-col-md12">
+    <table class="layui-table" lay-skin="line">
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.UserName)：</td>
+                <td>@Model.UserName</td>
+                <td>@Html.DisplayNameFor(x => x.RealName)：</td>
+                <td>@Model.RealName</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.Status)：</td>
+                <td>@Html.DisplayStatusHtml(@Model.Status)</td>
+                <td>@Html.DisplayNameFor(x => x.RoleName)：</td>
+                <td>@Model.RoleName</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.CreateOn)：</td>
+                <td>@Html.DisplayFor(x => x.CreateOn)</td>
+                <td>@Html.DisplayNameFor(x => x.UpdateOn)：</td>
+                <td>@Html.DisplayFor(x => x.UpdateOn)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(x => x.CreateBy)：</td>
+                <td>@Html.DisplayFor(x => x.CreateBy)</td>
+                <td>@Html.DisplayNameFor(x => x.UpdateBy)：</td>
+                <td>@Html.DisplayFor(x => x.UpdateBy)</td>
+            </tr>
+    </table>
+</div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form;
+    });
+</script>
+
