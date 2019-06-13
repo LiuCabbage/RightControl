@@ -9,33 +9,33 @@ using RightControl.WebApp.Areas.Admin.Controllers;
 
 namespace RightControl.WebApp.Areas.Permissions.Controllers
 {
-    public class MenuController : BaseController
+    public class RoleController : BaseController
     {
-        private IMenuService service;
-        public MenuController(IMenuService _service)
+        public IRoleService service { get; set; }
+        // GET: Permissions/Role
+        public override ActionResult Index(int? id)
         {
-            service = _service;
+            base.Index(id);
+            return View();
         }
         [HttpGet]
-        public JsonResult List(PageInfo pageInfo, MenuModel filter)
+        public JsonResult List(PageInfo pageInfo, RoleModel filter)
         {
-            var list = service.GetAll();
-            var result = new { code = 0, count = list.Count(), data = list };
+            var result = service.GetListByFilter(filter, pageInfo);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetMenuList(bool isIndex = false)
+        public ActionResult Detail(int Id)
         {
-            object result = service.GetMenusList(isIndex, Operator.RoleId);
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var model = service.ReadModel(Id);
+            return View(model);
         }
         public ActionResult Edit(int Id)
         {
             var model = service.ReadModel(Id);
-            ViewBag.ParentMenuName = service.GetParentMenuName(Id);
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(MenuModel model)
+        public ActionResult Edit(RoleModel model)
         {
             model.UpdateOn = DateTime.Now;
             model.UpdateBy = Operator.UserId;
@@ -47,19 +47,23 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Add(MenuModel model)
+        public ActionResult Add(RoleModel model)
         {
             model.CreateOn = DateTime.Now;
             model.CreateBy = Operator.UserId;
             var result = service.CreateModel(model) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
-        [HttpGet]
-        public JsonResult MenuActionList(PageInfo pageInfo, MenuModel filter, int roleId)
+        [HttpPost]
+        public ActionResult Delete(int Id)
         {
-            var list = service.GetAvailableMenuList(roleId);
-            var result = new { code = 0, count = list.Count(), data = list };
-            return Json(result, JsonRequestBehavior.AllowGet);
+            var result = service.DeleteModel(Id) ? SuccessTip() : ErrorTip();
+            return Json(result);
+        }
+        public ActionResult Assign(int Id)
+        {
+            ViewBag.RoleId = Id;
+            return View();
         }
     }
 }

@@ -270,6 +270,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Permissions\Controllers\ActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Permissions\Controllers\RoleController.cs" />
     <Compile Include="Areas\Permissions\Controllers\UserController.cs" />
     <Compile Include="Areas\Permissions\PermissionsAreaRegistration.cs" />
     <Compile Include="Areas\SysSet\Controllers\InfoController.cs" />
@@ -318,6 +319,14 @@
     <Content Include="Areas\Permissions\Views\User\Detail.cshtml" />
     <Content Include="Areas\Permissions\Views\User\Edit.cshtml" />
     <Content Include="Areas\Permissions\Views\User\Add.cshtml" />
+    <Content Include="Areas\Permissions\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Permissions\Views\Menu\Edit.cshtml" />
+    <Content Include="Areas\Permissions\Views\Menu\Add.cshtml" />
+    <Content Include="Areas\Permissions\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Permissions\Views\Role\Detail.cshtml" />
+    <Content Include="Areas\Permissions\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Permissions\Views\Role\Add.cshtml" />
+    <Content Include="Areas\Permissions\Views\Role\Assign.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.eot" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.ttf" />
@@ -338,7 +347,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Permissions\Models\" />
-    <Folder Include="Areas\Permissions\Views\Menu\" />
     <Folder Include="Areas\Permissions\Views\Shared\" />
     <Folder Include="Areas\SysSet\Models\" />
     <Folder Include="Areas\SysSet\Views\Shared\" />

@@ -1,0 +1,71 @@
+﻿@model RightControl.Model.MenuModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutForm.cshtml";
+}
+
+<div class="layui-col-md12 top10">
+    <form class="layui-form" id="form" action="/Permissions/Menu/Add" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单名称：</label>
+            <div class="layui-input-inline">
+                <input name="MenuName" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单图片：</label>
+            <div class="layui-input-inline">
+                <input name="MenuIcon" id="Icon" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" />
+            </div>
+            <div class="layui-input-inline"><a id="sltIcon" href="javascript:;">选择图片</a><span id="spnIcon"></span></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">上级菜单：</label>
+            <div class="layui-input-block">
+                <input name="ParentId" type="text" id="ParentId" lay-filter="demo" placeholder="【选择上级菜单】" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">菜单地址：</label>
+            <div class="layui-input-block">
+                @Html.TextBoxFor(x => x.MenuUrl, new Dictionary<string, object> { { "class", "layui-input" }, { "lay-vertype", "tips" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态：</label>
+            <div class="layui-input-inline">
+                @Html.StatusRadioHtml(true)
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序号：</label>
+            <div class="layui-input-block">
+                <input name="OrderNo" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" value="0">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="submitForm" id="submitForm">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form', 'treeselect', 'layer'], function () {
+        var form = layui.form,
+            treeselect = layui.treeselect,
+            layer = layui.layer;
+        var $ = layui.$;
+        $("#sltIcon").on("click", function () {
+            openSetIcon();
+        })
+        submitForm(form, "添加成功"); //监听提交
+        treeselect.render(
+            {
+                elem: "#ParentId",
+                data: "/Permissions/Menu/GetMenuList",
+                method: "GET"
+            });
+    });
+</script>

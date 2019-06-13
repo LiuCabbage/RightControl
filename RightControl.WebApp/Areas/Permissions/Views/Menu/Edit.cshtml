@@ -1,0 +1,75 @@
+﻿@model RightControl.Model.MenuModel
+    @{
+        ViewBag.Title = "Edit";
+        Layout = "~/Areas/Admin/Views/Shared/_LayoutForm.cshtml";
+    }
+
+    <div class="layui-col-md12 top10">
+        <form class="layui-form" id="form" action="/Permissions/Menu/Edit" method="post">
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.CreateBy)
+            @Html.HiddenFor(x => x.CreateOn)
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单名称：</label>
+                <div class="layui-input-inline">
+                    <input name="MenuName" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" value="@Model.MenuName">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单图片：</label>
+                <div class="layui-input-inline">
+                    <input name="MenuIcon" id="Icon" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" value="@Model.MenuIcon" />
+                </div>
+                <div class="layui-input-inline"><a id="sltIcon" href="javascript:;">选择图片</a><span id="spnIcon" class="iconfont @Model.MenuIcon"></span></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上级菜单：</label>
+                <div class="layui-input-block">
+                    <input name="ParentId" type="text" id="ParentId" lay-filter="demo" placeholder="【选择上级菜单】" autocomplete="off" class="layui-input" value="@Model.ParentId">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">菜单地址：</label>
+                <div class="layui-input-block">
+                    @Html.TextBoxFor(x => x.MenuUrl, new Dictionary<string, object> { { "class", "layui-input" }, { "lay-vertype", "tips" } })
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态：</label>
+                <div class="layui-input-inline">
+                    @Html.StatusRadioHtml(Model.Status)
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序号：</label>
+                <div class="layui-input-block">
+                    <input name="OrderNo" lay-verify="required" lay-vertype="tips" class="layui-input" type="text" value="@Model.OrderNo">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="submitForm" id="submitForm">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        layui.use(['form', 'treeselect'], function () {
+            var form = layui.form,
+                 treeselect = layui.treeselect;
+            var $ = layui.$;
+            submitForm(form, "编辑成功"); //监听提交
+            $("#sltIcon").on("click", function () {
+                openSetIcon();
+            })
+            treeselect.render(
+               {
+                   elem: "#ParentId",
+                   data: "/Permissions/Menu/GetMenuList",
+                   method: "GET",
+                   initValue: '@ViewBag.ParentMenuName'
+               });
+        });
+    </script>
+

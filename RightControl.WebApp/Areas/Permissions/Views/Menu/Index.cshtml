@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutList.cshtml";
+}
+
+<div class="admin-main">
+    <blockquote class="layui-elem-quote p10">
+        <form id="formSearch" class="layui-form" action="">
+            <div class="layui-form-item" style="margin-bottom:0px;">
+                <div style="float:left;">
+                    <a href="javascript:;" class="layui-btn" id="btnFold">
+                        <i class="layui-icon">&#xe608;</i>  全部折叠/展开
+                    </a>
+                </div>
+                <div style="float:right;">
+                    @Html.TopToolBarHtml(ViewData["ActionFormRightTop"])
+                </div>
+            </div>
+        </form>
+    </blockquote>
+    <div class="layui-field-box">
+        <table id="tbMenu" lay-filter="menuruv"></table>
+        <script type="text/html" id="bar">
+            @Html.ToolBarHtml(ViewData["ActionList"])
+        </script>
+    </div>
+</div>
+<script>
+        layui.use(['common', 'treeGrid'], function () {
+            common = layui.common,
+            treeGrid = layui.treeGrid;
+
+            var treeTable = treeGrid.render({
+                id: 'tbReload'
+                , elem: '#tbMenu'
+                , height: 'full-112' //高度最大化减去差值
+                , url: '/Permissions/Menu/List'
+                , page: false //开启分页
+                , cellMinWidth: 100
+                , treeId: 'Id'//树形id字段名称
+                , treeUpId: 'ParentId'//树形父id字段名称
+                , treeShowName: 'MenuName'//以树形式显示的字段
+                , cols: [[ //表头
+       //{ checkbox: true },
+       { field: 'Id', title: 'Id', width: 80,type: 'numbers'}
+       , { field: 'MenuName', title: '菜单名称' }
+       , { field: 'MenuUrl', title: '菜单路径' }
+       , { field: 'MenuIcon', title: '菜单图标', templet: '<div><i class="iconfont {{d.MenuIcon}}"></i></div>' }
+       , { field: 'CreateOn', title: '创建时间', templet: '<div>{{showDate(d.CreateOn)}}</div>' }
+        , { field: 'Status', title: '状态', templet: '<div>{{showStatus(d.Status)}}</div>', unresize: true, width: 100, align: 'center' }
+       , { field: 'OrderNo', title: '排序号' }
+       , { field: '', title: '操作', toolbar: "#bar" }
+                ]]
+            });
+
+            var $ = layui.$, active = {
+                reload: function () {
+                    //执行重载
+                    treeTable.reload('tbReload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                      , where: urlToJson($("#formSearch").serialize())
+                    });
+                }
+            };
+            $("#btnFold").on('click', function () {
+                $(".div-collapse.root .layui-tree-head").click();
+            });
+            //add
+            $('#btnAdd').on('click', function () {
+                common.openTop({
+                    title: '添加菜单', w: '670px', h: '450px', content: '/Permissions/Menu/Add/'
+                });
+            });
+            //监听工具条
+            treeGrid.on('tool(menuruv)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'del') {
+                    layer.confirm('确定要删除吗', function (index) {
+                        console.log(data);
+                        $.ajax({
+                            url: "UVServlet",
+                            type: "POST",
+                            data: { "uvid": data.Id, "memthodname": "deleteuv", "aid": data.aid },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.state == 1) {
+                                    obj.del(); //删除这一行
+                                    layer.close(index);//关闭弹框
+                                    common.msgSuccess("删除成功");
+                                } else {
+                                      common.msgError("删除失败");
+                                }
+                            }
+                        });
+                    });
+                } else if (obj.event === 'edit') {
+                    common.openTop({
+                        title: '菜单编辑', w: '670px', h: '450px', content: '/Permissions/Menu/Edit/' + data.Id
+                    });
+                }
+                else if (obj.event === "menu_action") {
+                    common.openTop({
+                        title: '菜单操作', w: '670px', h: '450px', content: '/Permissions/Action/MenuActionList/' + data.Id
+                    });
+                }
+            });
+        });
+</script>
+

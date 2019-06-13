@@ -16,23 +16,25 @@
     </style>
 </head>
 <body>
-    @RenderBody()
     <script type="text/javascript">
         layui.config({
             base: '/Areas/Admin/plugins/app/',
             version: '1522709297490' //为了更新 js 缓存，可忽略
         });
+    </script>
+    @RenderBody()
+    <script type="text/javascript">
         layui.use(['common'], function () {
             var $ = layui.jquery;
             common = layui.common;
         })
         //关闭页面
         function CloseWin() {
-            //parent.location.reload(); // 父页面刷新
-            var _btnSearch = window.parent.document.getElementById("btnSearch");
-            if (_btnSearch) {
-                _btnSearch.click();
-            }
+            parent.location.reload(); // 父页面刷新
+            //var _btnSearch = window.parent.document.getElementById("btnSearch");  这里注释是因为菜单管理没有搜索按钮
+            //if (_btnSearch) {
+            //    _btnSearch.click();
+            //}
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
             parent.layer.close(index); //再执行关闭
         }
