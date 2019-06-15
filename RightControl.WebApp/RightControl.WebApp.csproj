@@ -270,6 +270,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Permissions\Controllers\ActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Permissions\Controllers\MenuRoleActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\RoleController.cs" />
     <Compile Include="Areas\Permissions\Controllers\UserController.cs" />
     <Compile Include="Areas\Permissions\PermissionsAreaRegistration.cs" />
@@ -347,6 +348,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Permissions\Models\" />
+    <Folder Include="Areas\Permissions\Views\MenuRoleAction\" />
     <Folder Include="Areas\Permissions\Views\Shared\" />
     <Folder Include="Areas\SysSet\Models\" />
     <Folder Include="Areas\SysSet\Views\Shared\" />

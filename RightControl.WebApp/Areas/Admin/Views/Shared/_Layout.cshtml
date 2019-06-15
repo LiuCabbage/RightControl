@@ -9,13 +9,13 @@
     <link href="~/Areas/Admin/Content/css/global.css" rel="stylesheet" />
 </head>
 <body>
+    @RenderBody()
     <script type="text/javascript">
         layui.config({
             base: '/Areas/Admin/plugins/app/',
             version: '1522709297490' //为了更新 js 缓存，可忽略
         });
     </script>
-    @RenderBody()
     @RenderSection("scripts", required: false)
 </body>
 </html>

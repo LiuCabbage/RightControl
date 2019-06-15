@@ -1,8 +1,51 @@
-﻿
+﻿@model RightControl.Model.RoleModel
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutForm.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="layui-col-md12 top10">
+    <form class="layui-form" id="form" action="/Permissions/Role/Edit" method="post">
+        <input name="Id" value="@Model.Id" type="hidden">
+        @Html.HiddenFor(x => x.CreateOn)
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-inline">
+                <input name="RoleName" value="@Model.RoleName" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色编码</label>
+            <div class="layui-input-inline">
+                <input name="RoleCode" value="@Model.RoleCode" lay-verify="required" lay-vertype="tips" class="layui-input" type="text">
+            </div>
+            <div class="layui-form-mid layui-word-aux">唯一标识 如：admin</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色描述</label>
+            <div class="layui-input-block">
+                @Html.TextAreaFor(x => x.Remark, new Dictionary<string, object> { { "class", "layui-textarea" }, { "lay-verify", "pass" }, { "lay-vertype", "tips" } })
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-inline">
+                @Html.StatusRadioHtml(Model.Status)
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="submitForm" id="submitForm">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form;
+        var $ = layui.$;
+        submitForm(form, "编辑成功"); //监听提交
+    });
+</script>
 

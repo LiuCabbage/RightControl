@@ -24,6 +24,9 @@
     @RenderBody()
     <script type="text/javascript">
         layui.use(['common', 'form'], function () {
+            layer.config({
+                skin: 'layui-layer-molv'
+            })
             var $ = layui.jquery;
             $(function () {
                 $('#ajax-loader').fadeOut();

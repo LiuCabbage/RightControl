@@ -4,5 +4,125 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutList.cshtml";
 }
 
-<h2>Assign</h2>
+<div class="admin-main">
+    <blockquote class="layui-elem-quote p10">
+        <form id="formSearch" class="layui-form" action="">
+            <div class="layui-form-item" style="margin-bottom:0px;">
+                <div style="float:left;">
+                    <a href="javascript:;" class="layui-btn" id="btnFold">
+                        <i class="layui-icon">&#xe608;</i>  全部折叠/展开
+                    </a>
+                    <a href="javascript:;" class="layui-btn" id="btnSave">
+                        <i class="layui-icon">&#xe608;</i>  保存设置
+                    </a>
+                    <a href="javascript:;" id="btnSearch" style="visibility:hidden;"></a>
+                </div>
+                <input type="hidden" id="hidfRoleId" value="@ViewBag.RoleId" />
+            </div>
+        </form>
+    </blockquote>
+    <div class="layui-field-box">
+        <table id="tbMenu" lay-filter="menuruv"></table>
+        <script type="text/html" id="bar">
+            {{# if(d.MenuActionHtml!=""){}}
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="selectAll">全选</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="cancleSelectAll">反选</a>
+            {{# } }}
+        </script>
+    </div>
+</div>
+<script>
+        layui.use(['common', 'treeGrid','form'], function () {
+            common = layui.common,
+            treeGrid = layui.treeGrid,
+            form = layui.form;
 
+            var treeTable = treeGrid.render({
+                id: 'tbReload'
+                , elem: '#tbMenu'
+                , height: 'full-112' //高度最大化减去差值
+                , url: '/Permissions/Menu/MenuActionList?roleId='+document.getElementById("hidfRoleId").value
+                , page: false //开启分页
+                , cellMinWidth: 100
+                , treeId: 'Id'//树形id字段名称
+                , treeUpId: 'ParentId'//树形父id字段名称
+                , treeShowName: 'MenuName'//以树形式显示的字段
+                , cols: [[ //表头
+       //{ checkbox: true },
+       { field: 'Id', title: 'Id', width: 80, type: 'numbers' }
+       //, { field: 'Id', type: 'checkbox'}
+       , { field: 'MenuName', title: '菜单名称',type:'checkbox_txt' }
+       , { title: '权限节点', templet: '<div>{{d.MenuActionHtml}}</div>' }
+       , { field: 'MenuIcon', title: '菜单图标',width:100, templet: '<div><i class="iconfont {{d.MenuIcon}}"></i></div>' }
+       , { field: 'OrderNo', width: 80, title: '排序号' }
+       , { field: '', title: '操作',width:110, toolbar: "#bar" }
+                ]]
+            });
+
+            var $ = layui.$, active = {
+                reload: function () {
+                    //执行重载
+                    treeTable.reload('tbReload', {
+                        page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                      , where:{roleId:$("#hidfRoleId").val()}
+                    });
+                }
+            };
+            //折叠展开
+            $("#btnFold").on('click', function () {
+                $(".div-collapse.root .layui-tree-head").click();
+            });
+            //保存设置
+            $("#btnSave").on('click', function () {
+                var _roleId = $("#hidfRoleId").val();
+                var cbxs = $(".layui-table").find('tbody input[type="checkbox"]');
+                var _list = [];
+
+                cbxs.each(function (index, item) {
+                    if (item.checked == true) {
+                        var _row = { MenuId: 0, RoleId: 0, ActionId: 0 };
+                        var _name = item.name;//chx_2
+                        if (_name.indexOf('cbx_') > -1) {
+                            _name = _name.replace('cbx_', '');
+                        } else {
+                            _name = item.getAttribute('tag');
+                            if (_name.indexOf('cbx_') > -1) {
+                                _name = _name.replace('cbx_', '');
+                            }
+                        }
+                        _row.MenuId = _name;
+                        _row.ActionId = item.value=="on"?null:item.value;
+                        _row.RoleId = _roleId;
+                        _list.push(_row);
+                    }
+                });
+                $.ajax({
+                    url: "/Permissions/MenuRoleAction/InsertBatch",
+                    type: "POST",
+                    data: { "list": _list, roleId: _roleId },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.state == "success") {
+                            common.msgSuccess("保存成功");
+                        } else {
+                            common.msgError("保存失败");
+                        }
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                    }
+                });
+            });
+            //监听工具条
+            treeGrid.on('tool(menuruv)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'selectAll') {  //全选
+                    $("input[name='cbx_" + data.Id + "']").prop("checked", true);
+                } else if (obj.event === 'cancleSelectAll') {//反选
+                    $("input[name='cbx_" + data.Id + "']").prop("checked", false);
+                }
+                form.render('checkbox');
+            });
+        });
+</script>
