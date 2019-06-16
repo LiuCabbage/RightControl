@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2019-02-28 16:24:50
+Date: 2019-06-16 23:30:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,17 +35,18 @@ CREATE TABLE `t_action` (
   `UpdateBy` int(4) DEFAULT NULL COMMENT '更新者',
   `ClassName` varchar(30) DEFAULT NULL COMMENT '样式名称',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='操作表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='操作表';
 
 -- ----------------------------
 -- Records of t_action
 -- ----------------------------
-INSERT INTO `t_action` VALUES ('1', 'add', '添加', '1', 'icon-add', 'add', null, '0', '', '2019-02-28 14:44:33', '2019-02-28 14:45:18', '0', '0', null);
+INSERT INTO `t_action` VALUES ('1', 'Add', '添加', '1', 'icon-add', 'Add', null, '0', '', '2019-02-28 14:44:33', '2019-06-15 23:32:07', '0', '1', null);
 INSERT INTO `t_action` VALUES ('2', 'edit', '编辑', '0', 'icon-bianji', 'edit', null, '0', '', '2019-02-28 14:44:36', '2019-02-28 14:45:21', '0', '0', null);
 INSERT INTO `t_action` VALUES ('3', 'detail', '查看', '0', 'icon-chakan', 'detail', null, '0', '', '2019-02-28 14:44:39', '2019-02-28 14:45:24', '0', '0', 'layui-btn-normal');
 INSERT INTO `t_action` VALUES ('4', 'del', '删除', '0', 'icon-guanbi', 'del', null, '0', '', '2019-02-28 14:44:42', '2019-02-28 14:45:27', '0', '0', 'layui-btn-danger');
-INSERT INTO `t_action` VALUES ('5', 'reset', '重置密码', '0', 'icon-reset', null, null, '0', '', '2019-02-28 14:44:45', '2019-02-28 14:45:31', '0', '0', 'layui-btn-warm');
+INSERT INTO `t_action` VALUES ('5', 'reset', '重置密码', '0', 'icon-reset', 'reset', null, '0', '', '2019-02-28 14:44:45', '2019-06-15 23:34:55', '0', '1', 'layui-btn-warm');
 INSERT INTO `t_action` VALUES ('6', 'assign', '分配权限', '0', 'icon-jiaoseguanli', 'assign', null, '0', '', '2019-02-28 14:44:48', '2019-02-28 14:45:34', '0', '0', null);
+INSERT INTO `t_action` VALUES ('7', 'BatchDel', '批量删除', '1', 'icon-shanchu', 'BatchDel', null, '0', '', '2019-06-15 23:34:15', '0001-01-01 00:00:00', '1', '0', null);
 
 -- ----------------------------
 -- Table structure for t_log
@@ -63,11 +64,19 @@ CREATE TABLE `t_log` (
   `IPAddressName` varchar(100) DEFAULT NULL COMMENT 'IP所在地',
   `Status` bit(1) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Records of t_log
 -- ----------------------------
+INSERT INTO `t_log` VALUES ('1', 'Login', 'admin', '超级管理员', '系统登录', '登录成功', '2019-06-15 22:56:18', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('2', 'Login', 'admin', '超级管理员', '系统登录', '登录成功', '2019-06-15 23:11:59', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('3', 'Exit', 'admin', '超级管理员', null, '安全退出系统', '2019-06-15 23:12:04', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('4', 'Login', 'user', '用户', '系统登录', '登录成功', '2019-06-15 23:12:10', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('5', 'Exit', 'admin', '超级管理员', null, '安全退出系统', '2019-06-15 23:37:10', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('6', 'Login', 'admin', '超级管理员', '系统登录', '登录成功', '2019-06-15 23:37:18', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('7', 'Exit', 'admin', '超级管理员', null, '安全退出系统', '2019-06-15 23:38:07', '192.168.1.2', '本地局域网', '');
+INSERT INTO `t_log` VALUES ('18', 'Login', 'admin', '超级管理员', '系统登录', '登录成功', '2019-06-16 15:14:00', '192.168.1.2', '本地局域网', '');
 
 -- ----------------------------
 -- Table structure for t_menu
@@ -132,6 +141,7 @@ INSERT INTO `t_menu_action` VALUES ('5', '2');
 INSERT INTO `t_menu_action` VALUES ('5', '3');
 INSERT INTO `t_menu_action` VALUES ('5', '4');
 INSERT INTO `t_menu_action` VALUES ('10', '4');
+INSERT INTO `t_menu_action` VALUES ('10', '7');
 
 -- ----------------------------
 -- Table structure for t_menu_role_action
@@ -148,32 +158,48 @@ CREATE TABLE `t_menu_role_action` (
 -- Records of t_menu_role_action
 -- ----------------------------
 INSERT INTO `t_menu_role_action` VALUES ('1', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('1', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('2', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('2', '1', '1');
 INSERT INTO `t_menu_role_action` VALUES ('2', '1', '2');
+INSERT INTO `t_menu_role_action` VALUES ('2', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '1');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '2');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '3');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '4');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '6');
+INSERT INTO `t_menu_role_action` VALUES ('3', '3', '0');
+INSERT INTO `t_menu_role_action` VALUES ('3', '3', '1');
+INSERT INTO `t_menu_role_action` VALUES ('3', '3', '3');
 INSERT INTO `t_menu_role_action` VALUES ('4', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('4', '1', '1');
 INSERT INTO `t_menu_role_action` VALUES ('4', '1', '2');
 INSERT INTO `t_menu_role_action` VALUES ('4', '1', '3');
 INSERT INTO `t_menu_role_action` VALUES ('4', '1', '4');
 INSERT INTO `t_menu_role_action` VALUES ('4', '1', '5');
+INSERT INTO `t_menu_role_action` VALUES ('4', '3', '0');
+INSERT INTO `t_menu_role_action` VALUES ('4', '3', '1');
+INSERT INTO `t_menu_role_action` VALUES ('4', '3', '3');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '1');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '2');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '3');
 INSERT INTO `t_menu_role_action` VALUES ('5', '1', '4');
+INSERT INTO `t_menu_role_action` VALUES ('5', '3', '0');
+INSERT INTO `t_menu_role_action` VALUES ('5', '3', '3');
 INSERT INTO `t_menu_role_action` VALUES ('6', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('6', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('7', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('7', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('8', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('8', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('9', '1', '0');
+INSERT INTO `t_menu_role_action` VALUES ('9', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('10', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('10', '1', '4');
+INSERT INTO `t_menu_role_action` VALUES ('10', '1', '7');
+INSERT INTO `t_menu_role_action` VALUES ('10', '3', '0');
 
 -- ----------------------------
 -- Table structure for t_role
@@ -225,6 +251,6 @@ CREATE TABLE `t_user` (
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES ('1', 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '1', '', '2019-02-28 16:18:52', '2019-02-28 16:18:55', '0', '0', '1', '178899573', '178899573@qq.com', '最高权限', '');
+INSERT INTO `t_user` VALUES ('1', 'admin', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', '1', '', '2019-02-28 16:18:52', '2019-06-15 23:36:54', '0', '1', '0', '11111111111', '178899573@qq.com', '最高权限', '/Upload/img/502.jpg');
 INSERT INTO `t_user` VALUES ('2', 'test', '普通管理员', 'e10adc3949ba59abbe56e057f20f883e', '2', '', '2019-02-28 16:21:31', '2019-02-28 16:21:34', '0', '0', '1', '178899573', '178899573@qq.com', '普通权限', '');
 INSERT INTO `t_user` VALUES ('3', 'user', '用户', 'e10adc3949ba59abbe56e057f20f883e', '3', '', '2019-02-28 16:22:15', '2019-02-28 16:22:19', '0', '0', '1', '178899573', '178899573@qq.com', '低级权限', null);
