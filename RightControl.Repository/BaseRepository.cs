@@ -43,6 +43,13 @@ namespace RightControl.Repository
                 return conn.DeleteById<T>(Id);
             }
         }
+        public int BatchDelete(object ids)
+        {
+            using (var conn=MySqlHelper.GetConnection())
+            {
+                return conn.DeleteByIds<T>(ids);
+            }
+        }
         #endregion
         public IEnumerable<T> GetByPage(SearchFilter filter, out long total)
         {

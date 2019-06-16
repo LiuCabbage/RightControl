@@ -11,6 +11,7 @@ namespace RightControl.IService
         bool UpdateModel(T model);
         bool UpdateModel(T model, string updateFields);
         bool DeleteModel(int Id);
+        bool BatchDeleteModel(object ids);
         #endregion
         IEnumerable<T> GetAll(string returnFields = null, string orderby = null);
         dynamic GetListByFilter(T filter, PageInfo pageInfo);

@@ -11,6 +11,7 @@ namespace RightControl.IRepository
         int Update(T model);
         int Update(T model, string updateFields);
         int Delete(int Id);
+        int BatchDelete(object ids);
         #endregion
         IEnumerable<T> GetByPage(SearchFilter filter, out long total);
         IEnumerable<T> GetByPageUnite(SearchFilter filter, out long total);

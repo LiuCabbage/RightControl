@@ -22,6 +22,9 @@
                 </div>
                 @Html.SearchBtnHtml()
                 @Html.ResetBtnHtml()
+                <div style="float:right;">
+                    @Html.TopToolBarHtml(ViewData["ActionFormRightTop"])
+                </div>
             </div>
         </form>
     </blockquote>
@@ -88,6 +91,31 @@
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
             });
+            $('#btnBatchDel').on('click', function () {
+                var checkStatus = table.checkStatus('defaultReload');
+                if (checkStatus.data.length>0) {
+                    var data = checkStatus.data;
+                    layer.confirm('确定要删除吗', function (index) {
+                        console.log(data);
+                        $.ajax({
+                            url: "/SysSet/Log/BatchDel",
+                            type: "POST",
+                            data: { "list": data },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.state == "success") {
+                                    layer.close(index); //关闭弹框
+                                    common.msgSuccess("删除成功");
+                                } else {
+                                    common.msgError("删除失败");
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    common.msgError("未选中任何行");
+                }
+            });
             //服务器排序
             table.on('sort(defaultruv)', function (obj) {
                 //尽管我们的 table 自带排序功能，但并没有请求服务端。
@@ -107,17 +135,17 @@
                     layer.confirm('确定要删除吗', function (index) {
                         console.log(data);
                         $.ajax({
-                            url: "UVServlet",
+                            url: "/SysSet/Log/Delete",
                             type: "POST",
-                            data: { "uvid": data.id, "memthodname": "deleteuv", "aid": data.aid },
+                            data: { "Id": data.Id },
                             dataType: "json",
                             success: function (data) {
-                                if (data.state == 1) {
-                                    obj.del(); //删除这一行
-                                    layer.close(index);//关闭弹框
-                                    layer.msg("删除成功", { icon: 6 });
+                                if (data.state == "success") {
+                                    obj.del();//删除这一行
+                                    layer.close(index); //关闭弹框
+                                    common.msgSuccess("删除成功");
                                 } else {
-                                    layer.msg("删除失败", { icon: 5 });
+                                    common.msgError("删除失败");
                                 }
                             }
                         });

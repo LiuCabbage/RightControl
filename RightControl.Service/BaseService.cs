@@ -30,6 +30,10 @@ namespace RightControl.Service
         {
             return baseRepository.Delete(Id) > 0 ? true : false;
         }
+        public bool BatchDeleteModel(object ids)
+        {
+            return baseRepository.BatchDelete(ids) > 0 ? true : false;
+        }
         #endregion
         public IEnumerable<T> GetAll(string returnFields = null, string orderby = null)
         {
