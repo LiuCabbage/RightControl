@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2019-06-16 23:30:25
+Date: 2019-06-17 17:24:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `t_action` (
   `UpdateBy` int(4) DEFAULT NULL COMMENT '更新者',
   `ClassName` varchar(30) DEFAULT NULL COMMENT '样式名称',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='操作表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='操作表';
 
 -- ----------------------------
 -- Records of t_action
@@ -47,6 +47,7 @@ INSERT INTO `t_action` VALUES ('4', 'del', '删除', '0', 'icon-guanbi', 'del', 
 INSERT INTO `t_action` VALUES ('5', 'reset', '重置密码', '0', 'icon-reset', 'reset', null, '0', '', '2019-02-28 14:44:45', '2019-06-15 23:34:55', '0', '1', 'layui-btn-warm');
 INSERT INTO `t_action` VALUES ('6', 'assign', '分配权限', '0', 'icon-jiaoseguanli', 'assign', null, '0', '', '2019-02-28 14:44:48', '2019-02-28 14:45:34', '0', '0', null);
 INSERT INTO `t_action` VALUES ('7', 'BatchDel', '批量删除', '1', 'icon-shanchu', 'BatchDel', null, '0', '', '2019-06-15 23:34:15', '0001-01-01 00:00:00', '1', '0', null);
+INSERT INTO `t_action` VALUES ('8', 'menu_action', '菜单权限', '0', 'icon-setting-permissions', 'menu_action', null, '0', '', '2019-06-17 17:00:29', '0001-01-01 00:00:00', '1', '0', null);
 
 -- ----------------------------
 -- Table structure for t_log
@@ -64,7 +65,7 @@ CREATE TABLE `t_log` (
   `IPAddressName` varchar(100) DEFAULT NULL COMMENT 'IP所在地',
   `Status` bit(1) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Records of t_log
@@ -76,7 +77,6 @@ INSERT INTO `t_log` VALUES ('4', 'Login', 'user', '用户', '系统登录', '登
 INSERT INTO `t_log` VALUES ('5', 'Exit', 'admin', '超级管理员', null, '安全退出系统', '2019-06-15 23:37:10', '192.168.1.2', '本地局域网', '');
 INSERT INTO `t_log` VALUES ('6', 'Login', 'admin', '超级管理员', '系统登录', '登录成功', '2019-06-15 23:37:18', '192.168.1.2', '本地局域网', '');
 INSERT INTO `t_log` VALUES ('7', 'Exit', 'admin', '超级管理员', null, '安全退出系统', '2019-06-15 23:38:07', '192.168.1.2', '本地局域网', '');
-INSERT INTO `t_log` VALUES ('18', 'Login', 'admin', '超级管理员', '系统登录', '登录成功', '2019-06-16 15:14:00', '192.168.1.2', '本地局域网', '');
 
 -- ----------------------------
 -- Table structure for t_menu
@@ -100,7 +100,7 @@ CREATE TABLE `t_menu` (
 -- ----------------------------
 -- Records of t_menu
 -- ----------------------------
-INSERT INTO `t_menu` VALUES ('1', '权限管理', null, 'icon-caidan', '0', '0', '', '2019-02-28 15:03:14', '2019-02-28 15:03:17', '0', '0');
+INSERT INTO `t_menu` VALUES ('1', '权限管理', null, 'icon-setting-permissions', '0', '0', '', '2019-02-28 15:03:14', '2019-06-17 17:11:25', '0', '1');
 INSERT INTO `t_menu` VALUES ('2', '菜单管理', '/permissions/menu', 'icon-caidan', '1', '1', '', '2019-02-28 15:03:20', '2019-02-28 15:03:23', '0', '0');
 INSERT INTO `t_menu` VALUES ('3', '角色管理', '/permissions/role', 'icon-jiaoseguanli', '2', '1', '', '2019-02-28 15:03:25', '2019-02-28 15:03:29', '0', '0');
 INSERT INTO `t_menu` VALUES ('4', '用户管理', '/permissions/user', 'icon-yonghu', '3', '1', '', '2019-02-28 15:03:32', '2019-02-28 15:03:35', '0', '0');
@@ -126,6 +126,8 @@ CREATE TABLE `t_menu_action` (
 -- ----------------------------
 INSERT INTO `t_menu_action` VALUES ('2', '1');
 INSERT INTO `t_menu_action` VALUES ('2', '2');
+INSERT INTO `t_menu_action` VALUES ('2', '4');
+INSERT INTO `t_menu_action` VALUES ('2', '8');
 INSERT INTO `t_menu_action` VALUES ('3', '1');
 INSERT INTO `t_menu_action` VALUES ('3', '2');
 INSERT INTO `t_menu_action` VALUES ('3', '3');
@@ -162,6 +164,8 @@ INSERT INTO `t_menu_role_action` VALUES ('1', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('2', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('2', '1', '1');
 INSERT INTO `t_menu_role_action` VALUES ('2', '1', '2');
+INSERT INTO `t_menu_role_action` VALUES ('2', '1', '4');
+INSERT INTO `t_menu_role_action` VALUES ('2', '1', '8');
 INSERT INTO `t_menu_role_action` VALUES ('2', '3', '0');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '0');
 INSERT INTO `t_menu_role_action` VALUES ('3', '1', '1');
