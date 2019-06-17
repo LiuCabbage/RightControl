@@ -34,7 +34,7 @@
             //var _btnSearch = window.parent.document.getElementById("btnSearch");  这里注释是因为菜单管理没有搜索按钮
             //if (_btnSearch) {
             //    _btnSearch.click();
-            //}
+            ////}
             var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
             parent.layer.close(index); //再执行关闭
         }
@@ -47,7 +47,7 @@
                     ajaxSubmitForm($("#form"), function (data) {
                         if (data.state == "success") {
                             common.msgSuccess(msg);
-                            CloseWin();
+                            setTimeout(CloseWin, 1500);
                         }
                     });
                     return false;

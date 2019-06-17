@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IBaseService.cs" />
     <Compile Include="Permissions\IActionService.cs" />
+    <Compile Include="Permissions\IMenuActionService.cs" />
     <Compile Include="Permissions\IMenuRoleActionService.cs" />
     <Compile Include="Permissions\IMenuService.cs" />
     <Compile Include="Permissions\IRoleService.cs" />

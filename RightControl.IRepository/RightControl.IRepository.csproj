@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IBaseRepository.cs" />
     <Compile Include="Permissions\IActionRepository.cs" />
+    <Compile Include="Permissions\IMenuActionRepository.cs" />
     <Compile Include="Permissions\IMenuRepository.cs" />
     <Compile Include="Permissions\IMenuRoleActionRepository.cs" />
     <Compile Include="Permissions\IRoleRepository.cs" />

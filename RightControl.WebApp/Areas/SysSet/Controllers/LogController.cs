@@ -35,13 +35,13 @@ namespace RightControl.WebApp.Areas.SysSet.Controllers
         public ActionResult BatchDel(IEnumerable<LogModel> list)
         {
             //批量删除传值有点问题
-            string ids = "";
-            foreach (var item in list)
-            {
-                ids += "'" + item.Id + "',";
-            }
-            ids = ids.Substring(0, ids.Length - 1);
-            var result = service.BatchDeleteModel(@"(" + ids + ")") ? SuccessTip() : ErrorTip();
+            //string ids = "";
+            //foreach (var item in list)
+            //{
+            //    ids += "'" + item.Id + "',";
+            //}
+            //ids = ids.Substring(0, ids.Length - 1);@"(" + ids + ")"
+            var result = service.BatchDeleteModel(list) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
     }

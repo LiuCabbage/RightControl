@@ -44,6 +44,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Common\DefaultPaging.cs" />
     <Compile Include="Permissions\ActionService.cs" />
+    <Compile Include="Permissions\MenuActionService.cs" />
     <Compile Include="Permissions\MenuRoleActionService.cs" />
     <Compile Include="Permissions\MenuService.cs" />
     <Compile Include="Permissions\RoleService.cs" />

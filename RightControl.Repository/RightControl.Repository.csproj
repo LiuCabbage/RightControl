@@ -58,6 +58,7 @@
     <Compile Include="DBHeper\PageDataView.cs" />
     <Compile Include="DBHeper\SqlHelper.cs" />
     <Compile Include="Permissions\ActionRepository.cs" />
+    <Compile Include="Permissions\MenuActionRepository.cs" />
     <Compile Include="Permissions\MenuRepository.cs" />
     <Compile Include="Permissions\MenuRoleActionRepository.cs" />
     <Compile Include="Permissions\RoleRepository.cs" />

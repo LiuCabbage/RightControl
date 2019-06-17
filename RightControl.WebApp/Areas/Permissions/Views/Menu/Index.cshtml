@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutList.cshtml";
 }
@@ -81,17 +80,17 @@
                     layer.confirm('确定要删除吗', function (index) {
                         console.log(data);
                         $.ajax({
-                            url: "UVServlet",
+                            url: "/Permissions/Menu/Delete",
                             type: "POST",
-                            data: { "uvid": data.Id, "memthodname": "deleteuv", "aid": data.aid },
+                            data: { "Id": data.Id },
                             dataType: "json",
                             success: function (data) {
-                                if (data.state == 1) {
-                                    obj.del(); //删除这一行
-                                    layer.close(index);//关闭弹框
+                                if (data.state == "success") {
+                                    obj.del();//删除这一行
+                                    layer.close(index); //关闭弹框
                                     common.msgSuccess("删除成功");
                                 } else {
-                                      common.msgError("删除失败");
+                                    common.msgError("删除失败");
                                 }
                             }
                         });
@@ -103,7 +102,7 @@
                 }
                 else if (obj.event === "menu_action") {
                     common.openTop({
-                        title: '菜单操作', w: '670px', h: '450px', content: '/Permissions/Action/MenuActionList/' + data.Id
+                        title: '菜单操作', w: '670px', h: '300px', content: '/Permissions/Action/MenuActionList/' + data.Id
                     });
                 }
             });

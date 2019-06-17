@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Assign";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutList.cshtml";
 }
@@ -74,6 +73,16 @@
             $("#btnFold").on('click', function () {
                 $(".div-collapse.root .layui-tree-head").click();
             });
+            //关闭页面
+            function CloseWin() {
+                parent.location.reload(); // 父页面刷新
+                //var _btnSearch = window.parent.document.getElementById("btnSearch");  这里注释是因为菜单管理没有搜索按钮
+                //if (_btnSearch) {
+                //    _btnSearch.click();
+                ////}
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭
+            }
             //保存设置
             $("#btnSave").on('click', function () {
                 var _roleId = $("#hidfRoleId").val();
@@ -108,8 +117,7 @@
                         } else {
                             common.msgError("保存失败");
                         }
-                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                        parent.layer.close(index); //再执行关闭
+                        setTimeout(CloseWin, 1500);
                     }
                 });
             });

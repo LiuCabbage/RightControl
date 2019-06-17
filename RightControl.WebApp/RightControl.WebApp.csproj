@@ -269,6 +269,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Permissions\Controllers\ActionController.cs" />
+    <Compile Include="Areas\Permissions\Controllers\MenuActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\MenuController.cs" />
     <Compile Include="Areas\Permissions\Controllers\MenuRoleActionController.cs" />
     <Compile Include="Areas\Permissions\Controllers\RoleController.cs" />
@@ -328,6 +329,7 @@
     <Content Include="Areas\Permissions\Views\Role\Edit.cshtml" />
     <Content Include="Areas\Permissions\Views\Role\Add.cshtml" />
     <Content Include="Areas\Permissions\Views\Role\Assign.cshtml" />
+    <Content Include="Areas\Permissions\Views\Action\MenuActionList.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.eot" />
     <Content Include="Areas\Admin\plugins\layui\font\iconfont.ttf" />
@@ -348,6 +350,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Permissions\Models\" />
+    <Folder Include="Areas\Permissions\Views\MenuAction\" />
     <Folder Include="Areas\Permissions\Views\MenuRoleAction\" />
     <Folder Include="Areas\Permissions\Views\Shared\" />
     <Folder Include="Areas\SysSet\Models\" />

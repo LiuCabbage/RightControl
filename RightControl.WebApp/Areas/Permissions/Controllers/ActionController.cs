@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using RightControl.WebApp.Areas.Admin.Controllers;
-using RightControl.Common;
+﻿using RightControl.Common;
 using RightControl.Common.Extend;
 using RightControl.IService;
 using RightControl.Model;
+using RightControl.WebApp.Areas.Admin.Controllers;
+using System;
+using System.Web.Mvc;
 
 namespace RightControl.WebApp.Areas.Permissions.Controllers
 {
     public class ActionController : BaseController
     {
         private IActionService service;
+        public IMenuService menuService { get; set; }
+        public IMenuActionService menuActionService { get; set; }
         public ActionController(IActionService _service)
         {
             service = _service;
@@ -68,7 +67,13 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
             var result = service.DeleteModel(Id) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
-
-
+        public ActionResult MenuActionList(int Id)
+        {
+            var model = menuService.ReadModel(Id);
+            ViewBag.Id = model.Id;
+            ViewBag.MenuName = model.MenuName;
+            ViewData["MenuActionList"] = service.GetAll();
+            return View();
+        }
     }
 }

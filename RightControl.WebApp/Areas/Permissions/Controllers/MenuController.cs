@@ -52,6 +52,12 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
             var result = service.CreateModel(model) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
+        [HttpPost]
+        public ActionResult Delete(int Id)
+        {
+            var result = service.DeleteModel(Id) ? SuccessTip() : ErrorTip();
+            return Json(result);
+        }
         [HttpGet]
         public JsonResult MenuActionList(PageInfo pageInfo, MenuModel filter, int roleId)
         {
