@@ -15,7 +15,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">菜单权限：</label>
             <div class="layui-input-block">
-                @Html.ActionCheckBox(ViewData["MenuActionList"])
+                @if (ViewBag.ParentId == 0)
+                {
+                    <input class="layui-input" type="text" value="含有子菜单的父菜单不能设置权限" disabled>
+                }
+                else
+                {
+                    @Html.ActionCheckBox(ViewData["MenuActionList"], ViewData["AvailableMenuActionList"])
+                }
             </div>
         </div>
         <div class="layui-form-item">

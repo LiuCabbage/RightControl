@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RightControl.IRepository
 {
-    public interface IMenuActionRepository:IBaseRepository<MenuActionModel>
+    public interface IMenuActionRepository : IBaseRepository<MenuActionModel>
     {
         /// <summary>
         /// 保存菜单权限配置

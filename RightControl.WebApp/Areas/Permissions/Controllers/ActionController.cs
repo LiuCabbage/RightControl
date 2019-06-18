@@ -12,7 +12,6 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
     {
         private IActionService service;
         public IMenuService menuService { get; set; }
-        public IMenuActionService menuActionService { get; set; }
         public ActionController(IActionService _service)
         {
             service = _service;
@@ -61,17 +60,29 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
             var result = service.CreateModel(model) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
+        /// <summary>
+        /// 删除按钮
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int Id)
         {
+            //删除按钮
             var result = service.DeleteModel(Id) ? SuccessTip() : ErrorTip();
+            //删除t_menu_action记录
+
+            //删除t_menu_role_action记录
+
             return Json(result);
         }
         public ActionResult MenuActionList(int Id)
         {
             var model = menuService.ReadModel(Id);
             ViewBag.Id = model.Id;
+            ViewBag.ParentId = model.ParentId;
             ViewBag.MenuName = model.MenuName;
+            ViewData["AvailableMenuActionList"] = service.GetActionListByMenuId(Id);
             ViewData["MenuActionList"] = service.GetAll();
             return View();
         }

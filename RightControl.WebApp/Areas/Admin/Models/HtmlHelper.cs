@@ -16,15 +16,24 @@ namespace RightControl.WebApp
         /// <param name="helper"></param>
         /// <param name="_list"></param>
         /// <returns></returns>
-        public static HtmlString ActionCheckBox(this HtmlHelper helper, dynamic _list = null)
+        public static HtmlString ActionCheckBox(this HtmlHelper helper, dynamic _list = null, dynamic _alist = null)
         {
             StringBuilder sb = new StringBuilder();
             var list = _list as List<ActionModel>;
+            var alist = _alist as List<ActionModel>;
             if (list != null && list.Count > 0)
             {
                 foreach (var v in list)
                 {
-                    sb.AppendFormat(@"<input type='checkbox' lay-skin='primary' name='{0}' title='{1}' value='{2}'>", v.ActionCode, v.ActionName, v.Id);
+                    bool isSelect = false;
+                    foreach (var item in alist)
+                    {
+                        if (v.ActionCode == item.ActionCode)
+                        {
+                            isSelect = true;
+                        }
+                    }
+                    sb.AppendFormat(@"<input type='checkbox' lay-skin='primary' name='{0}' title='{1}' value='{2}' {3}>", v.ActionCode, v.ActionName, v.Id, isSelect ? "checked" : "");
                 }
             }
             return new HtmlString(sb.ToString());
