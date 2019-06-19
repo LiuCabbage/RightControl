@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RightControl.IService
 {
-    public interface IMenuRoleActionService
+    public interface IMenuRoleActionService : IBaseService<MenuRoleActionModel>
     {
         /// <summary>
         /// 保存菜单角色权限配置

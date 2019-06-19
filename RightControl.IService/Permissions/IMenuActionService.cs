@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RightControl.IService
 {
-    public interface IMenuActionService
+    public interface IMenuActionService : IBaseService<MenuActionModel>
     {
         /// <summary>
         /// 保存菜单权限配置

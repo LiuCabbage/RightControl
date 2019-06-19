@@ -19,5 +19,11 @@ namespace RightControl.IService
         /// <param name="roleId">角色ID</param>
         /// <returns></returns>
         IEnumerable<MenuModel> GetAvailableMenuList(int roleId);
+        /// <summary>
+        /// 删除菜单时,同时删除t_menu_action和t_menu_role_action记录
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        bool DeleteMenuAllByMenuId(int menuId);
     }
 }

@@ -47,5 +47,10 @@ namespace RightControl.Service
         {
             return repository.GetActionListByMenuIdRoleId(menuId, roleId, position);
         }
+
+        public bool DeleteActionAllByActionId(int actionId)
+        {
+            return repository.DeleteActionAllByActionId(actionId);
+        }
     }
 }

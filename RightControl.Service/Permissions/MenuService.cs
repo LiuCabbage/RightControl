@@ -119,5 +119,10 @@ INNER JOIN t_menu m ON mra.MenuId = m.Id";
             }
             return list;
         }
+
+        public bool DeleteMenuAllByMenuId(int menuId)
+        {
+            return repository.DeleteMenuAllByMenuId(menuId);
+        }
     }
 }

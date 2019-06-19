@@ -68,12 +68,8 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
         [HttpPost]
         public ActionResult Delete(int Id)
         {
-            //删除按钮
-            var result = service.DeleteModel(Id) ? SuccessTip() : ErrorTip();
-            //删除t_menu_action记录
-
-            //删除t_menu_role_action记录
-
+            //删除权限时,同时删除菜单权限,菜单角色权限记录
+            var result = service.DeleteActionAllByActionId(Id) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
         public ActionResult MenuActionList(int Id)

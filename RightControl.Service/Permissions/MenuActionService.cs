@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RightControl.Service
 {
-    public class MenuActionService : IMenuActionService
+    public class MenuActionService : BaseService<MenuActionModel>, IMenuActionService
     {
         public IMenuActionRepository repository { get; set; }
         /// <summary>
@@ -17,6 +17,10 @@ namespace RightControl.Service
         public int SavePermission(IEnumerable<MenuActionModel> entitys, int menuId)
         {
             return repository.SavePermission(entitys, menuId);
+        }
+        public dynamic GetListByFilter(MenuActionModel filter, PageInfo pageInfo)
+        {
+            return GetListByFilter(filter, pageInfo);
         }
     }
 }

@@ -25,5 +25,10 @@ namespace RightControl.Service
             }
             return GetListByFilter(filter, pageInfo, _where);
         }
+
+        public bool DeleteRoleAllByRoleId(int roleId)
+        {
+            return repository.DeleteRoleAllByRoleId(roleId);
+        }
     }
 }

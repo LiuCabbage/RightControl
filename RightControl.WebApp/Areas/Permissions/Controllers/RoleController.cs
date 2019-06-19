@@ -51,10 +51,16 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
             var result = service.CreateModel(model) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int Id)
         {
-            var result = service.DeleteModel(Id) ? SuccessTip() : ErrorTip();
+            //删除角色时,同时删除菜单角色权限记录
+            var result = service.DeleteRoleAllByRoleId(Id) ? SuccessTip() : ErrorTip();
             return Json(result);
         }
         public ActionResult Assign(int Id)

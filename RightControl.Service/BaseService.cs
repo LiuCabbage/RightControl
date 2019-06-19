@@ -93,5 +93,9 @@ namespace RightControl.Service
             }
             return _where;
         }
+        public IEnumerable<T> GetByWhere(string where = null, object param = null, string returnFields = null, string orderby = null)
+        {
+            return baseRepository.GetByWhere(where, param, returnFields, orderby);
+        }
     }
 }
