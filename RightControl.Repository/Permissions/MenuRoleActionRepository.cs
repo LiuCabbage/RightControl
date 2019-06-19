@@ -23,7 +23,10 @@ namespace RightControl.Repository
                 try
                 {
                     conn.DeleteByWhere<MenuRoleActionModel>(" where RoleId=@RoleId", new { RoleId = roleId }, transaction);
-                    conn.InsertBatch<MenuRoleActionModel>(entitys, transaction);
+                    if (entitys != null)
+                    {
+                        conn.InsertBatch<MenuRoleActionModel>(entitys, transaction);
+                    }
                     transaction.Commit();
                     result = 1;
                 }

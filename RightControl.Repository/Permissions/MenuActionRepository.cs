@@ -24,7 +24,10 @@ namespace RightControl.Repository
                 try
                 {
                     conn.DeleteByWhere<MenuActionModel>(" where MenuId=@MenuId", new { MenuId = menuId }, transaction);
-                    conn.InsertBatch<MenuActionModel>(entitys, transaction);
+                    if (entitys!=null)
+                    {
+                        conn.InsertBatch<MenuActionModel>(entitys, transaction);
+                    }
                     transaction.Commit();
                     result = 1;
                 }

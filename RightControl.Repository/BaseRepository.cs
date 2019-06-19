@@ -2,6 +2,7 @@
 using RightControl.IRepository;
 using RightControl.Model;
 using System.Collections.Generic;
+using System.Data;
 
 namespace RightControl.Repository
 {
@@ -43,11 +44,14 @@ namespace RightControl.Repository
                 return conn.DeleteById<T>(Id);
             }
         }
-        public int BatchDelete(object ids)
+        /// <summary>
+        /// 根据条件删除
+        /// </summary>
+        public int DeleteByWhere(string where)
         {
             using (var conn=MySqlHelper.GetConnection())
             {
-                return conn.DeleteByIds<T>(ids);
+                return conn.DeleteByWhere<T>(where);
             }
         }
         #endregion

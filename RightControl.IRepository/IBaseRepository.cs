@@ -11,7 +11,10 @@ namespace RightControl.IRepository
         int Update(T model);
         int Update(T model, string updateFields);
         int Delete(int Id);
-        int BatchDelete(object ids);
+        /// <summary>
+        /// 根据条件删除
+        /// </summary>
+        int DeleteByWhere(string where);
         #endregion
         IEnumerable<T> GetByPage(SearchFilter filter, out long total);
         IEnumerable<T> GetByPageUnite(SearchFilter filter, out long total);
