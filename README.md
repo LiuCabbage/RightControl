@@ -1,4 +1,4 @@
-# RightControl-master
+# RightControl
 
 #### 介绍
 .NET 通用后台角色权限管理系统，已完成。
