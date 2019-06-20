@@ -109,7 +109,7 @@
                                     common.msgError("删除失败");
                                 }
                                 //table.reload('defaultReload');    重新渲染表格会出现横着滚动条
-                                location.reload();
+                                setTimeout(function () { location.reload(); }, 1500); 
                             }
                         });
                     });

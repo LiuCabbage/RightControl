@@ -119,6 +119,7 @@
     <Content Include="Areas\Admin\Content\fonts\iconfont.svg" />
     <Content Include="Areas\Admin\Content\images\0.jpg" />
     <Content Include="Areas\Admin\Content\images\ajax-loader.gif" />
+    <Content Include="Areas\Admin\Content\images\bg.jpg" />
     <Content Include="Areas\Admin\Content\js\global.js" />
     <Content Include="Areas\Admin\Content\js\index.js" />
     <Content Include="Areas\Admin\Content\js\jquery-1.10.2.min.js" />
