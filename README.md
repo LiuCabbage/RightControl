@@ -2,7 +2,7 @@
 
 #### 介绍
 .NET 通用后台角色权限管理系统，已完成。<br>
-项目地址：[http://106.14.77.184/Admin/Login](http://)
+项目地址：[http://106.14.77.184/Admin/Login](http://106.14.77.184/Admin/Login)
 
 #### 软件架构
 通用三层架构，面向接口编程。
@@ -25,7 +25,7 @@
 
 #### 项目由来
 邹琼俊 .net项目驱动学习
-[https://edu.csdn.net/course/detail/8137](http://)
+[https://edu.csdn.net/course/detail/8137](http://https://edu.csdn.net/course/detail/8137)
 由于是付费课程，我这里不贴出博主的项目git地址<br>
 第一次自己动手做一个通用权限管理后台，看视频一步步完成。
 各位看官大佬觉得还可以的话，麻烦点个Star。
