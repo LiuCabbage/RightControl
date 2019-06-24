@@ -55,7 +55,9 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
             bool isOk = service.CreateModel(model);
             if (isOk)
             {
-                //获取新增的菜单ID,在t_menu_role_action新增一行(菜单ID,0,0)记录,即新增的菜单没有角色和权限按钮
+                //获取新增的菜单ID
+                //在t_menu_role_action新增一行(菜单ID,0,0)记录,即新增的菜单没有角色和权限按钮
+                //在t_menu_role_action新增一行(菜单ID,1,0)记录,即新增的菜单超级管理员有菜单权限但没按钮权限
                 string where = " where MenuName=@MenuName";
                 string orderby = " ORDER BY Id DESC";
                 IEnumerable<MenuModel> modelList = service.GetByWhere(where, new { MenuName = model.MenuName }, "Id", orderby);
@@ -71,6 +73,13 @@ namespace RightControl.WebApp.Areas.Permissions.Controllers
                     ActionId = 0
                 };
                 menuRoleActionService.CreateModel(menuRoleActionModel);
+                MenuRoleActionModel menuRoleActionTwoModel = new MenuRoleActionModel()
+                {
+                    MenuId = menuId,
+                    RoleId = 1,
+                    ActionId = 0
+                };
+                menuRoleActionService.CreateModel(menuRoleActionTwoModel);
             }
             var result = isOk ? SuccessTip() : ErrorTip();
             return Json(result);
