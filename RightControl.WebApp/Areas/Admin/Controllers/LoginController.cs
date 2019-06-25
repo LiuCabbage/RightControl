@@ -88,7 +88,7 @@ namespace RightControl.WebApp.Areas.Admin.Controllers
                 }
                 else
                 {
-                    return Content(new AjaxResult { state = ResultType.error.ToString(), message = "用户名或密码错误。" }.ToJson());
+                    throw new Exception("用户名或密码错误。");
                 }
             }
             catch (Exception ex)
