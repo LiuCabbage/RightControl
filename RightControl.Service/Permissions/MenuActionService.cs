@@ -18,9 +18,15 @@ namespace RightControl.Service
         {
             return repository.SavePermission(entitys, menuId);
         }
+        /// <summary>
+        /// 这里这个方法没意义，仅仅实现接口
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageInfo"></param>
+        /// <returns></returns>
         public dynamic GetListByFilter(MenuActionModel filter, PageInfo pageInfo)
         {
-            return GetListByFilter(filter, pageInfo);
+            return GetListByFilter(filter, pageInfo, "");
         }
     }
 }
