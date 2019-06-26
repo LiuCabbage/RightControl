@@ -51,9 +51,8 @@ namespace RightControl.WebApp.Areas.SysSet.Controllers
                     return Json(_uploadFile);
                 }
                 //定义本地路径位置
-                string local = "\\Upload\\img";
+                string localPath = Server.MapPath("~/Upload/img/");
                 string filePathName = string.Empty;
-                string localPath = Path.Combine(HttpRuntime.AppDomainAppPath, local);
 
                 string tmpName = Server.MapPath("~/Upload/img/");
                 var tmp = file.FileName;
