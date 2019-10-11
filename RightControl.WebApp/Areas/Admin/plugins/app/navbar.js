@@ -215,6 +215,7 @@ layui.define(['element', 'common'], function (exports) {
 	 * @param {Object} data
 	 */
     function getHtml(data) {
+        console.log(data);
         ulHtml = '<ul class="layui-nav layui-nav-tree beg-navbar">';
         for (var i = 0; i < data.length; i++) {
             if (data[i].spread) {
@@ -222,7 +223,7 @@ layui.define(['element', 'common'], function (exports) {
             } else {
                 ulHtml += '<li class="layui-nav-item">';
             }
-            if (data[i].children !== undefined && data[i].children.length > 0) {
+            if (data[i].children !== undefined && data[i].children !== null && data[i].children.length > 0) {
                 ulHtml += '<a href="javascript:;">';
                 if (data[i].icon !== undefined && data[i].icon !== '') {
                     if (data[i].icon.indexOf('icon-') == -1) {
