@@ -194,7 +194,12 @@ layui.define(['element', 'common'], function (exports) {
             ulHtml += '<dl class="layui-nav-child">'
             for (var j = 0; j < data.children.length; j++) {
                 ulHtml += '<dd>';
-                ulHtml += '<a data-id=' + data.children[j].id + ' href="javascript:;" data-url="' + data.children[j].href + '?id=' + data.children[j].id + '" lay-href="' + data.children[j].href + '">';
+                //这里看怎么判断
+                if (data.children.children != null) {
+                    ulHtml += '<a data-id=' + data.children[j].id + ' href="javascript:;" data-url="' + data.children[j].href + '?id=' + data.children[j].id + '" lay-href="' + data.children[j].href + '">';
+                } else {
+                    ulHtml += '<a href="javascript:;">';
+                }
                 if (data.children[j].icon !== undefined && data.children[j].icon !== '') {
                     if (data.children[j].icon.indexOf('icon-') !== -1) {
                         ulHtml += '<i class="iconfont icon ' + data.children[j].icon + '" data-icon="' + data.children[j].icon + '" aria-hidden="true"></i>';
