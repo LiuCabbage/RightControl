@@ -194,12 +194,12 @@ layui.define(['element', 'common'], function (exports) {
             ulHtml += '<dl class="layui-nav-child">'
             for (var j = 0; j < data.children.length; j++) {
                 ulHtml += '<dd>';
-                //这里看怎么判断
-                if (data.children.children != null) {
+                //无限极父级会被点击，无法解决，去掉无限极，仅支持二级菜单
+                //if (data.children[j].children == null) {
                     ulHtml += '<a data-id=' + data.children[j].id + ' href="javascript:;" data-url="' + data.children[j].href + '?id=' + data.children[j].id + '" lay-href="' + data.children[j].href + '">';
-                } else {
-                    ulHtml += '<a href="javascript:;">';
-                }
+                //} else {
+                    //ulHtml += '<a href="javascript:;">';
+                //}
                 if (data.children[j].icon !== undefined && data.children[j].icon !== '') {
                     if (data.children[j].icon.indexOf('icon-') !== -1) {
                         ulHtml += '<i class="iconfont icon ' + data.children[j].icon + '" data-icon="' + data.children[j].icon + '" aria-hidden="true"></i>';
@@ -209,7 +209,7 @@ layui.define(['element', 'common'], function (exports) {
                 }
                 ulHtml += '<cite>' + data.children[j].title + '</cite>';
                 ulHtml += '</a>';
-                getChildHtml(data.children[j], '');
+                //getChildHtml(data.children[j], '');
                 ulHtml += '</dd>';
             }
             ulHtml += '</dl>';
@@ -243,19 +243,21 @@ layui.define(['element', 'common'], function (exports) {
                 getChildHtml(data[i]);
 
                 //ulHtml += '</dl>';
-            } else {
-                var dataUrl = (data[i].href !== undefined && data[i].href !== '') ? 'data-url="' + data[i].href + '" lay-href="' + data[i].href +'"': '';
-                ulHtml += '<a href="javascript:;" ' + dataUrl + '>';
-                if (data[i].icon !== undefined && data[i].icon !== '') {
-                    if (data[i].icon.indexOf('icon-') == -1) {
-                        ulHtml += '<i class="iconfont icon-' + data[i].icon + '" aria-hidden="true" data-icon="' + data[i].icon + '"></i>';
-                    } else {
-                        ulHtml += '<i class="iconfont ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
-                    }
-                }
-                ulHtml += '<cite>' + data[i].title + '</cite>'
-                ulHtml += '</a>';
             }
+            ///没有子菜单的父菜单不显示，显示后tab无法关闭
+            //else {
+            //    var dataUrl = (data[i].href !== undefined && data[i].href !== '') ? 'data-url="' + data[i].href + '" lay-href="' + data[i].href +'"': '';
+            //    ulHtml += '<a href="javascript:;" ' + dataUrl + '>';
+            //    if (data[i].icon !== undefined && data[i].icon !== '') {
+            //        if (data[i].icon.indexOf('icon-') == -1) {
+            //            ulHtml += '<i class="iconfont icon-' + data[i].icon + '" aria-hidden="true" data-icon="' + data[i].icon + '"></i>';
+            //        } else {
+            //            ulHtml += '<i class="iconfont ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
+            //        }
+            //    }
+            //    ulHtml += '<cite>' + data[i].title + '</cite>'
+            //    ulHtml += '</a>';
+            //}
             ulHtml += '</li>';
         }
         ulHtml += '</ul>';
