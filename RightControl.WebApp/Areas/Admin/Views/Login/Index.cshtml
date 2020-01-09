@@ -67,10 +67,10 @@
         </ul>
     </div>
     <div class="copyright">
-        <a href="@ViewBag.SiteDomain" style="text-decoration:none;color:#fff;" target="_blank">@ViewBag.CopyRight</a>
+        @ViewBag.CopyRight | <a href="http://beian.miit.gov.cn" target="_blank" style="color:#fff; text-decoration-line:none;">赣ICP备19008895号</a>
     </div>
     <script type="text/javascript">
-    (function ($) {
+        (function ($) {
             $.login = {
                 formMessage: function (msg) {
                     $('.login_tips').find('.tips_msg').remove();

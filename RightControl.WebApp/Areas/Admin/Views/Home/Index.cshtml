@@ -91,12 +91,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="layui-footer footer footer-demo" id="admin-footer">
-        <div class="layui-main">
-            <div>
-                @Model.CopyRight
-                <a href="Model.SiteDomain" target="_blank">@Model.SiteDomain</a>
+        <div class="layui-footer footer footer-demo" id="admin-footer">
+            <div class="layui-main">
+                <div>
+                    @Model.CopyRight | <a href="http://beian.miit.gov.cn" target="_blank">赣ICP备19008895号</a>
+                </div>
             </div>
         </div>
     </div>
@@ -108,85 +107,87 @@
     <script src="~/Areas/Admin/datas/nav.js"></script>
     <script src="~/Areas/Admin/Content/js/index.js"></script>
     <!--天气 -->
-    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
-    <script>tpwidget("init", {
-                        "container": "tp-weather-widget",
-                        "color": "#FFFFFF",
-                        "flavor": "slim",
-                        "location": "WT33C6J2C563",
-                        "geolocation": "enabled",
-                        "language": "zh-chs",
-                        "unit": "c",
-                        "theme": "chameleon",
-                        "bubble": "enabled",
-                        "alarmType": "badge",
-                        "uid": "U78371FB98",
-                        "hash": "cd55c15865ecbe0f16ba78ca60ad51eb"
-                    });
-                    tpwidget("show");</script>
-    <script>layui.use(['element'], function () {
+    <script>(function (T, h, i, n, k, P, a, g, e) { g = function () { P = h.createElement(i); a = h.getElementsByTagName(i)[0]; P.src = k; P.charset = "utf-8"; P.async = 1; a.parentNode.insertBefore(P, a) }; T["ThinkPageWeatherWidgetObject"] = n; T[n] || (T[n] = function () { (T[n].q = T[n].q || []).push(arguments) }); T[n].l = +new Date(); if (T.attachEvent) { T.attachEvent("onload", g) } else { T.addEventListener("load", g, false) } }(window, document, "script", "tpwidget", "//widget.seniverse.com/widget/chameleon.js"))</script>
+    <script>
+        tpwidget("init", {
+            "container": "tp-weather-widget",
+            "color": "#FFFFFF",
+            "flavor": "slim",
+            "location": "WT33C6J2C563",
+            "geolocation": "enabled",
+            "language": "zh-chs",
+            "unit": "c",
+            "theme": "chameleon",
+            "bubble": "enabled",
+            "alarmType": "badge",
+            "uid": "U78371FB98",
+            "hash": "cd55c15865ecbe0f16ba78ca60ad51eb"
+        });
+        tpwidget("show");</script>
+    <script>
+        layui.use(['element'], function () {
             var $ = layui.jquery,
                 element = layui.element;
 
-					var tabDelete = function (id) {
-					    console.log("删除的TabID：" + id)
-					    element.tabDelete("admin-tab", id);//删除
-					}
-					var tabDeleteAll = function (ids) {
-					    $.each(ids, function (i, item) {
-					        element.tabDelete("admin-tab", item);
-					    })
-					}
-					function refreshCurTab() {
-					    var url = $("li[class='layui-this']").attr('lay-attr');
-					    var curIframe = $("iframe[src='" + url + "']");
-					    curIframe.attr("src", curIframe.attr("src"));//刷新框架
-					}
-					$("#larryms_refresh").click(function () {
-					    refreshCurTab();
-					});
-				    /**
-                     * 注册tab右键菜单点击事件
-                     */
-					$("#rightmenu li dd").click(function () {
-					    var currentActiveTabID = $("li[class='layui-this']").attr('lay-id');// 获取当前激活的选项卡ID
-					    var tabtitle = $(".layui-tab-title li");
-					    var allTabIDArr = [];
-					    $.each(tabtitle, function (i) {
-					        allTabIDArr[i] = $(this).attr("lay-id");
-					    })
+            var tabDelete = function (id) {
+                console.log("删除的TabID：" + id)
+                element.tabDelete("admin-tab", id);//删除
+            }
+            var tabDeleteAll = function (ids) {
+                $.each(ids, function (i, item) {
+                    element.tabDelete("admin-tab", item);
+                })
+            }
+            function refreshCurTab() {
+                var url = $("li[class='layui-this']").attr('lay-attr');
+                var curIframe = $("iframe[src='" + url + "']");
+                curIframe.attr("src", curIframe.attr("src"));//刷新框架
+            }
+            $("#larryms_refresh").click(function () {
+                refreshCurTab();
+            });
+            /**
+             * 注册tab右键菜单点击事件
+             */
+            $("#rightmenu li dd").click(function () {
+                var currentActiveTabID = $("li[class='layui-this']").attr('lay-id');// 获取当前激活的选项卡ID
+                var tabtitle = $(".layui-tab-title li");
+                var allTabIDArr = [];
+                $.each(tabtitle, function (i) {
+                    allTabIDArr[i] = $(this).attr("lay-id");
+                })
 
-					    switch ($(this).attr("data-type")) {
-					        //case "refreshCur": //刷新当前选项卡
-					        //    refreshCurTab();
-					        //    break;
-					        case "closethis"://关闭当前，如果开始了tab可关闭，实际意义不大
-					            tabDelete(currentActiveTabID);
-					            break;
-					        case "closeall"://关闭所有
-					            tabDeleteAll(allTabIDArr);
-					            break;
-					        case "closeothers"://关闭非当前
-					            $.each(allTabIDArr, function (i) {
-					                var tmpTabID = allTabIDArr[i];
-					                if (currentActiveTabID != tmpTabID)
-					                    tabDelete(tmpTabID);
-					            })
-					            break;
-					        case "closeleft"://关闭左侧全部
-					            var index = allTabIDArr.indexOf(currentActiveTabID);
-					            tabDeleteAll(allTabIDArr.slice(0, index));
-					            break;
-					        case "closeright"://关闭右侧全部
-					            var index = allTabIDArr.indexOf(currentActiveTabID);
-					            tabDeleteAll(allTabIDArr.slice(index + 1));
-					            break;
-					        default:
-					            $('.rightmenu').hide();
+                switch ($(this).attr("data-type")) {
+                    //case "refreshCur": //刷新当前选项卡
+                    //    refreshCurTab();
+                    //    break;
+                    case "closethis"://关闭当前，如果开始了tab可关闭，实际意义不大
+                        tabDelete(currentActiveTabID);
+                        break;
+                    case "closeall"://关闭所有
+                        tabDeleteAll(allTabIDArr);
+                        break;
+                    case "closeothers"://关闭非当前
+                        $.each(allTabIDArr, function (i) {
+                            var tmpTabID = allTabIDArr[i];
+                            if (currentActiveTabID != tmpTabID)
+                                tabDelete(tmpTabID);
+                        })
+                        break;
+                    case "closeleft"://关闭左侧全部
+                        var index = allTabIDArr.indexOf(currentActiveTabID);
+                        tabDeleteAll(allTabIDArr.slice(0, index));
+                        break;
+                    case "closeright"://关闭右侧全部
+                        var index = allTabIDArr.indexOf(currentActiveTabID);
+                        tabDeleteAll(allTabIDArr.slice(index + 1));
+                        break;
+                    default:
+                        $('.rightmenu').hide();
 
-					    }
-					    //$('#rightmenu').hide();
-					})
-				});</script>
+                }
+                //$('#rightmenu').hide();
+            })
+        });</script>
 </div>
 
