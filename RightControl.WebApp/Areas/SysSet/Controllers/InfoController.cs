@@ -1,4 +1,4 @@
-﻿using RightControl.Common;
+using RightControl.Common;
 using RightControl.IService;
 using RightControl.Model;
 using RightControl.WebApp.Areas.Admin.Controllers;
@@ -50,6 +50,15 @@ namespace RightControl.WebApp.Areas.SysSet.Controllers
                     _uploadFile.msg = "上传出错!请检查文件名或文件内容";
                     return Json(_uploadFile);
                 }
+
+                if (!IsAllowedExtension(file))
+                {
+                    _uploadFile.code = -1;
+                    _uploadFile.data = new { src = "" };
+                    _uploadFile.msg = "检测到上传文件有问题!";
+                    return Json(_uploadFile);
+                }
+
                 //定义本地路径位置
                 string localPath = Server.MapPath("~/Upload/img/");
                 string filePathName = string.Empty;
@@ -79,6 +88,69 @@ namespace RightControl.WebApp.Areas.SysSet.Controllers
             {
                 return Json(_uploadFile, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        /// <summary>
+        /// 判断文件是否正常，防止伪造文件上传
+        /// </summary>
+        /// <param name="hifile"></param>
+        /// <returns></returns>
+        private static bool IsAllowedExtension(HttpPostedFileBase postedFile)
+        {
+            int fileLen = postedFile.ContentLength;
+            byte[] imgArray = new byte[fileLen];
+            postedFile.InputStream.Read(imgArray, 0, fileLen);
+            System.IO.MemoryStream fs = new System.IO.MemoryStream(imgArray);
+            System.IO.BinaryReader r = new System.IO.BinaryReader(fs);
+
+            string fileclass = "";
+            byte buffer;
+            try
+            {
+                buffer = r.ReadByte();
+                fileclass = buffer.ToString();
+                buffer = r.ReadByte();
+                fileclass += buffer.ToString();
+            }
+            catch
+            {
+                return false;
+            }
+            r.Close();
+            fs.Close();
+
+            /*文件扩展名说明 
+            jpg：255216 
+            bmp：6677 
+            png：13780
+            gif：7173 
+            xls,doc,ppt：208207 
+            rar：8297 
+            zip：8075 
+            txt：98109 
+            pdf：3780 
+            */
+            bool ret = false;
+            String[] fileType = {
+            "255216",
+            "6677",
+            "13780",
+            "7173",
+            "208207",
+            "8297",
+            "8075",
+            "98109",
+            "3780"
+            };
+            for (int i = 0; i < fileType.Length; i++)
+            {
+                if (fileclass == fileType[i])
+                {
+                    ret = true;
+                    break;
+                }
+            }
+            return ret;
         }
     }
 }
