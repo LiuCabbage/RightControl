@@ -1,8 +1,7 @@
 # RightControl
 
 #### 介绍
-.NET 通用后台角色权限管理系统，已完成。<br>
-项目地址：[http://rightcontrol.baocaige.top/Admin/Login](http://rightcontrol.baocaige.top/Admin/Login)
+.NET 通用后台角色权限管理系统。
 
 #### 软件架构
 通用三层架构，面向接口编程。
