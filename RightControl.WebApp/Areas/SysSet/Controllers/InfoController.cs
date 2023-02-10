@@ -54,7 +54,6 @@ namespace RightControl.WebApp.Areas.SysSet.Controllers
                 if (!IsAllowedExtension(file))
                 {
                     _uploadFile.code = -1;
-                    _uploadFile.data = new { src = "" };
                     _uploadFile.msg = "检测到上传文件有问题!";
                     return Json(_uploadFile);
                 }
