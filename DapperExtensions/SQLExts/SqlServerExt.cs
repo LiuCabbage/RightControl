@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
@@ -1017,6 +1017,19 @@ namespace DapperExtensions.SqlServerExt
             return GetByInBase<T>(conn, typeof(Table), field, ids, returnFields, transaction, commandTimeout);
         }
 
-
+        /// <summary>
+        /// 获取分页数据 联合查询
+        /// </summary>
+        public static IEnumerable<T> GetByPageUnite<T>(this IDbConnection conn, string prefix, int pageIndex, int pageSize, out int total, string returnFields = null, string where = null, object param = null, string orderBy = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("SELECT COUNT(1) FROM {0};", where);
+            sb.AppendFormat("select top {3} * from(select row_number() over(order by {4}CreateTime desc) as rownumber,{0} from {1}) temp_table where rownumber > (({2}-1)*{3})", returnFields, where, pageIndex, pageSize, prefix);
+            using (var reader = conn.QueryMultiple(sb.ToString(), param, transaction, commandTimeout))
+            {
+                total = reader.ReadFirst<int>();
+                return reader.Read<T>();
+            }
+        }
     }
 }
